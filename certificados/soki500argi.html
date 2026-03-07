@@ -11,6 +11,8 @@
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
     :root { --rojo:#e63329; --amarillo:#f5a200; --negro:#1a1a1a; --oscuro:#1e2530; --gris-bg:#e8e8e8; --gris-icon:#4a4a4a; }
     body { font-family:'Inter',sans-serif; background:var(--gris-bg); color:var(--negro); min-height:100vh; }
+
+    /* NAVBAR */
     .navbar { background:#1c1c1c; height:58px; display:flex; align-items:center; padding:0 2rem; gap:2rem; position:sticky; top:0; z-index:200; box-shadow:0 2px 8px rgba(0,0,0,.5); }
     .nav-logo { display:flex; align-items:center; gap:8px; text-decoration:none; }
     .nav-logo-box { background:linear-gradient(135deg,var(--rojo) 40%,var(--amarillo)); color:white; font-weight:800; font-size:0.85rem; padding:5px 11px; border-radius:5px; letter-spacing:1px; }
@@ -20,19 +22,73 @@
     .nav-spacer { flex:1; }
     .nav-back { color:#aaa; font-size:0.82rem; text-decoration:none; transition:color .2s; }
     .nav-back:hover { color:var(--amarillo); }
+
+    /* BREADCRUMB */
     .breadcrumb { max-width:1100px; margin:1.4rem auto 0; padding:0 2rem; font-size:0.78rem; color:#999; display:flex; align-items:center; gap:6px; }
     .breadcrumb a { color:var(--rojo); text-decoration:none; }
+
+    /* LAYOUT */
     .cert-layout { max-width:1100px; margin:2.5rem auto 5rem; padding:0 2rem; display:grid; grid-template-columns:530px 1fr; gap:4rem; align-items:start; }
     .cert-frame-wrap { position:sticky; top:76px; }
-    .cert-outer-frame { background:var(--oscuro); border-radius:4px; padding:10px; box-shadow:0 4px 20px rgba(0,0,0,.45); }
-    .cert-pdf-container { background:#fff; width:100%; height:390px; overflow:hidden; }
-    .cert-pdf-container iframe { width:100%; height:100%; border:none; display:block; }
-    .pdf-fallback { display:none; width:100%; height:100%; background:#f9f9f9; align-items:center; justify-content:center; flex-direction:column; gap:1rem; text-align:center; padding:2rem; }
-    .pdf-fallback p { font-size:0.85rem; color:#666; }
-    .pdf-fallback a { background:var(--rojo); color:white; padding:0.6rem 1.4rem; border-radius:6px; font-size:0.85rem; font-weight:600; text-decoration:none; }
+
+    /* Marco oscuro exterior */
+    .cert-outer-frame {
+        background:var(--oscuro);
+        border-radius:4px;
+        padding:10px;
+        box-shadow:0 4px 20px rgba(0,0,0,.45);
+        /* Bloquea cualquier interacción que se salga del marco */
+        overflow:hidden;
+    }
+
+    /* Contenedor del PDF — posición relativa para la capa de bloqueo */
+    .cert-pdf-container {
+        background:#fff;
+        width:100%;
+        height:420px;
+        position:relative;
+        overflow:hidden;
+    }
+
+    /*
+     * El iframe muestra el PDF con parámetros para ocultar
+     * la barra de herramientas del navegador:
+     *   #toolbar=0   → oculta la barra superior
+     *   &navpanes=0  → oculta el panel de miniaturas lateral
+     *   &scrollbar=0 → oculta la barra de scroll
+     *   &view=Fit    → ajusta el PDF al contenedor
+     *   &zoom=page-fit → zoom para que quepa una página completa
+     */
+    .cert-pdf-container iframe {
+        width:100%;
+        height:100%;
+        border:none;
+        display:block;
+        /* Desactiva la selección de texto dentro del iframe */
+        pointer-events:none;
+    }
+
+    /*
+     * Capa transparente encima del PDF.
+     * Bloquea completamente cualquier clic o interacción
+     * con el visor del navegador — el usuario solo puede
+     * ver el PDF, no tocarlo.
+     */
+    .pdf-block-layer {
+        position:absolute;
+        inset:0;
+        z-index:10;
+        cursor:default;
+        /* transparent — no se ve, pero bloquea todo clic */
+        background:transparent;
+    }
+
+    /* PANEL DERECHO */
     .cert-panel { padding-top:0.5rem; }
     .panel-title { font-size:1.95rem; font-weight:800; color:var(--negro); line-height:1.2; margin-bottom:0.85rem; }
     .panel-subtitle { font-size:0.95rem; color:#555; line-height:1.65; margin-bottom:1.75rem; }
+
+    /* COMPARTIR */
     .share-row { display:flex; align-items:center; gap:1rem; margin-bottom:2rem; flex-wrap:wrap; }
     .share-label { font-size:0.9rem; font-weight:600; color:var(--negro); flex-shrink:0; }
     .share-icons { display:flex; align-items:center; gap:0.5rem; }
@@ -40,15 +96,42 @@
     .sicon:hover { background:#2a2a2a; transform:scale(1.1); }
     .sicon svg { width:17px; height:17px; display:block; }
     .sicon-copy { border-radius:8px; background:#5a5a5a; }
-    .btn-descargar { display:flex; align-items:center; justify-content:center; background:var(--rojo); color:#fff; font-family:'Inter',sans-serif; font-size:1rem; font-weight:700; padding:0.9rem 2rem; border-radius:6px; text-decoration:none; border:none; cursor:pointer; transition:background .2s,transform .15s; width:100%; max-width:340px; }
+
+    /* BOTÓN DESCARGAR */
+    .btn-descargar {
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        background:var(--rojo);
+        color:#fff;
+        font-family:'Inter',sans-serif;
+        font-size:1rem;
+        font-weight:700;
+        padding:0.9rem 2rem;
+        border-radius:6px;
+        text-decoration:none;
+        border:none;
+        cursor:pointer;
+        transition:background .2s,transform .15s;
+        width:100%;
+        max-width:340px;
+    }
     .btn-descargar:hover { background:#c8271e; transform:translateY(-1px); }
+
     .copy-toast { display:none; font-size:0.78rem; color:#22c55e; font-weight:600; margin-top:0.6rem; }
     .panel-divider { margin:2rem 0 1.25rem; border:none; border-top:1px solid #d0d0d0; }
     .panel-nav { display:flex; justify-content:space-between; align-items:center; }
     .panel-nav a { font-size:0.82rem; color:var(--rojo); text-decoration:none; font-weight:500; }
+
     footer { background:#1c1c1c; color:#888; text-align:center; padding:1.25rem; font-size:0.8rem; }
     footer a { color:var(--amarillo); text-decoration:none; }
-    @media(max-width:900px){ .cert-layout{grid-template-columns:1fr;gap:2rem;} .cert-frame-wrap{position:static;} .cert-pdf-container{height:320px;} .btn-descargar{max-width:100%;} }
+
+    @media(max-width:900px){
+        .cert-layout{grid-template-columns:1fr;gap:2rem;}
+        .cert-frame-wrap{position:static;}
+        .cert-pdf-container{height:320px;}
+        .btn-descargar{max-width:100%;}
+    }
     </style>
 </head>
 <body>
@@ -73,27 +156,32 @@
 
 <div class="cert-layout">
 
+    <!-- IZQUIERDA: PDF enmarcado -->
     <div class="cert-frame-wrap">
         <div class="cert-outer-frame">
             <div class="cert-pdf-container">
 
-                <!-- ✅ RUTA CORREGIDA — apunta exactamente a tu PDF -->
+                <!--
+                    Los parámetros después del # controlan el visor:
+                    toolbar=0   → sin barra superior
+                    navpanes=0  → sin panel lateral de miniaturas
+                    scrollbar=0 → sin barra de scroll
+                    view=Fit    → ajusta la página al tamaño del iframe
+                -->
                 <iframe
                     id="cert-iframe"
-                    src="../pdfs/soki500argi.pdf"
-                    title="Certificado KIARA SOLIER HUAMANI"
-                    loading="lazy">
+                    src="../pdfs/soki500argi.pdf#toolbar=0&navpanes=0&scrollbar=0&view=Fit"
+                    title="Certificado KIARA SOLIER HUAMANI">
                 </iframe>
 
-                <!-- Se muestra si el navegador bloquea el iframe -->
-                <div class="pdf-fallback" id="pdf-fallback">
-                    <p>Tu navegador no puede mostrar el PDF aquí.</p>
-                    <a href="../pdfs/soki500argi.pdf" target="_blank">Abrir en nueva pestaña</a>
-                </div>
+                <!-- Capa invisible que bloquea toda interacción con el PDF -->
+                <div class="pdf-block-layer"></div>
+
             </div>
         </div>
     </div>
 
+    <!-- DERECHA: Panel de felicitaciones -->
     <div class="cert-panel">
         <h2 class="panel-title">¡Muchas felicidades!</h2>
         <p class="panel-subtitle">
@@ -125,7 +213,7 @@
         </div>
         <div id="copy-toast" class="copy-toast">✓ Enlace copiado</div>
 
-        <!-- ✅ RUTA CORREGIDA en href y nombre de descarga -->
+        <!-- Único botón de descarga -->
         <a href="../pdfs/soki500argi.pdf"
            download="Certificado-KIARA-SOLIER-HUAMANI.pdf"
            class="btn-descargar">
@@ -153,11 +241,25 @@
         document.getElementById('share-li').href = 'https://www.linkedin.com/sharing/share-offsite/?url=' + url;
         document.getElementById('share-wa').href = 'https://wa.me/?text=' + txt + url;
     });
+
     function copiarLink() {
         var link = window.location.href;
-        function show() { var t=document.getElementById('copy-toast'); t.style.display='block'; setTimeout(function(){t.style.display='none';},2800); }
-        if(navigator.clipboard){ navigator.clipboard.writeText(link).then(show).catch(function(){fb();show();}); } else{fb();show();}
-        function fb(){ var ta=document.createElement('textarea'); ta.value=link; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta); }
+        function show() {
+            var t = document.getElementById('copy-toast');
+            t.style.display = 'block';
+            setTimeout(function(){ t.style.display = 'none'; }, 2800);
+        }
+        if (navigator.clipboard) {
+            navigator.clipboard.writeText(link).then(show).catch(function(){ fb(); show(); });
+        } else { fb(); show(); }
+        function fb() {
+            var ta = document.createElement('textarea');
+            ta.value = link;
+            document.body.appendChild(ta);
+            ta.select();
+            document.execCommand('copy');
+            document.body.removeChild(ta);
+        }
     }
 </script>
 </body>
