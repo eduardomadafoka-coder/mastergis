@@ -16,8 +16,6 @@
         --oscuro:    #1e2530;
         --gris-bg:   #e8e8e8;
         --gris-icon: #4a4a4a;
-
-        --cert-w: 530px;
     }
 
     body { font-family:'Inter',sans-serif; background:var(--gris-bg); color:var(--negro); min-height:100vh; }
@@ -37,58 +35,45 @@
     .breadcrumb { max-width:1100px; margin:1.4rem auto 0; padding:0 2rem; font-size:0.78rem; color:#999; display:flex; align-items:center; gap:6px; }
     .breadcrumb a { color:var(--rojo); text-decoration:none; }
 
-    /* ── LAYOUT PRINCIPAL ── */
+    /* ── LAYOUT 2 COLUMNAS ── */
     .cert-layout {
         max-width: 1100px;
         margin: 2.5rem auto 5rem;
         padding: 0 2rem;
         display: grid;
-        grid-template-columns: var(--cert-w) 1fr;
+        grid-template-columns: 480px 1fr;
         gap: 4rem;
         align-items: start;
     }
 
-    /* ── COLUMNA IZQUIERDA: Marco del certificado ── */
+    /* ── COLUMNA IZQUIERDA ── */
     .cert-frame-wrap { position: sticky; top: 76px; }
 
-    /* Marco oscuro exterior — mismo grosor uniforme en los 4 lados */
+    /* Marco oscuro — padding uniforme en los 4 lados */
     .cert-outer-frame {
         background: var(--oscuro);
         border-radius: 6px;
-        padding: 10px;                          /* grosor del marco */
+        padding: 10px;
         box-shadow: 0 6px 28px rgba(0,0,0,.5);
-        overflow: hidden;
-        width: var(--cert-w);
+        display: inline-block;
+        width: 100%;
     }
 
-    /* Contenedor del PDF con ratio exacto 280×395mm */
-    .cert-pdf-container {
-        position: relative;
+    /*
+     * ★ CAMBIAR: src con tu imagen
+     *   ../img/certificados/soki500argi.jpg
+     *
+     * La imagen se ajusta sola al ancho del marco
+     * y mantiene sus proporciones originales automáticamente.
+     */
+    .cert-img {
         width: 100%;
-        /* Alto = ancho × (395/280) = ancho × 1.4107 */
-        aspect-ratio: 280 / 395;
-        background: #fff;
-        overflow: hidden;
-    }
-
-    /* iframe ocupa todo el contenedor, sin barra de herramientas */
-    .cert-pdf-container iframe {
-        position: absolute;
-        top: 0; left: 0;
-        width: 100%;
-        height: 100%;
-        border: none;
         display: block;
-        pointer-events: none;   /* bloquea interacción con el visor */
-    }
-
-    /* Capa invisible que impide cualquier clic sobre el PDF */
-    .pdf-block-layer {
-        position: absolute;
-        inset: 0;
-        z-index: 10;
-        background: transparent;
-        cursor: default;
+        border-radius: 2px;
+        /* Sin height fijo — el alto lo define la imagen misma */
+        user-select: none;
+        pointer-events: none;   /* no se puede arrastrar ni hacer clic derecho */
+        -webkit-user-drag: none;
     }
 
     /* ── COLUMNA DERECHA: Panel ── */
@@ -117,12 +102,10 @@
     footer { background:#1c1c1c; color:#888; text-align:center; padding:1.25rem; font-size:0.8rem; }
     footer a { color:var(--amarillo); text-decoration:none; }
 
-    /* ── RESPONSIVE ── */
-    @media (max-width: 960px) {
-        .cert-layout { grid-template-columns: 1fr; gap: 2rem; }
-        .cert-frame-wrap { position: static; width: 100%; }
-        .cert-outer-frame { width: 100%; }
-        .btn-descargar { max-width: 100%; }
+    @media (max-width:960px) {
+        .cert-layout { grid-template-columns:1fr; gap:2rem; }
+        .cert-frame-wrap { position:static; }
+        .btn-descargar { max-width:100%; }
     }
     </style>
 </head>
@@ -148,20 +131,28 @@
 
 <div class="cert-layout">
 
-    <!-- PDF enmarcado con proporción 280×395mm -->
+    <!-- ═══ IZQUIERDA: imagen del certificado ═══ -->
     <div class="cert-frame-wrap">
         <div class="cert-outer-frame">
-            <div class="cert-pdf-container">
-                <iframe
-                    src="../pdfs/soki500argi.pdf#toolbar=0&navpanes=0&scrollbar=0&view=Fit&zoom=page-fit"
-                    title="Certificado KIARA SOLIER HUAMANI">
-                </iframe>
-                <div class="pdf-block-layer"></div>
-            </div>
+            <!--
+            ★ CAMBIAR src por tu imagen:
+              ../img/certificados/soki500argi.jpg
+
+            Pasos:
+            1. Convierte tu PDF a JPG (smallpdf.com o captura de pantalla)
+            2. Guarda el archivo en:  img/certificados/soki500argi.jpg
+            3. Cambia el src de abajo con ese nombre
+            -->
+            <img
+                class="cert-img"
+                src="../img/certificados/soki500argi.jpg"
+                alt="Certificado KIARA SOLIER HUAMANI"
+                draggable="false"
+            >
         </div>
     </div>
 
-    <!-- Panel derecho -->
+    <!-- ═══ DERECHA: panel ═══ -->
     <div class="cert-panel">
         <h2 class="panel-title">¡Muchas felicidades!</h2>
         <p class="panel-subtitle">
@@ -193,6 +184,7 @@
         </div>
         <div id="copy-toast" class="copy-toast">✓ Enlace copiado</div>
 
+        <!-- PDF original para descargar — la imagen es solo para mostrar -->
         <a href="../pdfs/soki500argi.pdf"
            download="Certificado-KIARA-SOLIER-HUAMANI.pdf"
            class="btn-descargar">
@@ -208,7 +200,7 @@
 </div>
 
 <footer>
-    <p>© 2026 <a href="../index.html">MASTERGIS</a> — Todos los derechos reservados</p>
+    <p>© 2026 <a href="../index.html">Elsa Castañeda Vargas</a> — Todos los derechos reservados</p>
 </footer>
 
 <script>
@@ -220,25 +212,11 @@
         document.getElementById('share-li').href = 'https://www.linkedin.com/sharing/share-offsite/?url=' + url;
         document.getElementById('share-wa').href = 'https://wa.me/?text=' + txt + url;
     });
-
     function copiarLink() {
         var link = window.location.href;
-        function show() {
-            var t = document.getElementById('copy-toast');
-            t.style.display = 'block';
-            setTimeout(function(){ t.style.display = 'none'; }, 2800);
-        }
-        if (navigator.clipboard) {
-            navigator.clipboard.writeText(link).then(show).catch(function(){ fb(); show(); });
-        } else { fb(); show(); }
-        function fb() {
-            var ta = document.createElement('textarea');
-            ta.value = link;
-            document.body.appendChild(ta);
-            ta.select();
-            document.execCommand('copy');
-            document.body.removeChild(ta);
-        }
+        function show() { var t=document.getElementById('copy-toast'); t.style.display='block'; setTimeout(function(){t.style.display='none';},2800); }
+        if(navigator.clipboard){ navigator.clipboard.writeText(link).then(show).catch(function(){fb();show();}); } else{fb();show();}
+        function fb(){ var ta=document.createElement('textarea'); ta.value=link; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta); }
     }
 </script>
 </body>
