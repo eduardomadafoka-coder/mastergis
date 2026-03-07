@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- ★ CAMBIAR: título de la pestaña -->
-    <title>Certificado · [NOMBRE DEL CURSO] · PRUEBA DE CAMBIO ITUTLO </title>
+    <title>Certificado · KIARA SOLIER HUAMANI</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -69,8 +68,7 @@
 <div class="breadcrumb">
     <a href="../index.html">Inicio</a><span>›</span>
     <a href="index.html">Certificados</a><span>›</span>
-    <!-- ★ CAMBIAR: nombre en el breadcrumb -->
-    <span>[NOMBRE CORTO]</span>
+    <span>KIARA SOLIER HUAMANI</span>
 </div>
 
 <div class="cert-layout">
@@ -78,19 +76,18 @@
     <div class="cert-frame-wrap">
         <div class="cert-outer-frame">
             <div class="cert-pdf-container">
-                <!--
-                ★★★ CAMBIAR: pon la ruta de tu PDF
-                    Ejemplo: src="../pdfs/soki500argi.pdf"
-                -->
+
+                <!-- ✅ RUTA CORREGIDA — apunta exactamente a tu PDF -->
                 <iframe
                     id="cert-iframe"
-                    src="../pdfs/[NOMBRE-ARCHIVO].pdf"
-                    title="Certificado [NOMBRE DEL CURSO]"
+                    src="../pdfs/soki500argi.pdf"
+                    title="Certificado KIARA SOLIER HUAMANI"
                     loading="lazy">
                 </iframe>
+
+                <!-- Se muestra si el navegador bloquea el iframe -->
                 <div class="pdf-fallback" id="pdf-fallback">
                     <p>Tu navegador no puede mostrar el PDF aquí.</p>
-                    <!-- ★ CAMBIAR: misma ruta del PDF -->
                     <a href="../pdfs/soki500argi.pdf" target="_blank">Abrir en nueva pestaña</a>
                 </div>
             </div>
@@ -99,10 +96,6 @@
 
     <div class="cert-panel">
         <h2 class="panel-title">¡Muchas felicidades!</h2>
-
-        <!--
-        ★ CAMBIAR: descripción del curso (opcional personalizar)
-        -->
         <p class="panel-subtitle">
             Comparte tus logros con tu familia, amigos, empleadores y la comunidad.
         </p>
@@ -110,7 +103,6 @@
         <div class="share-row">
             <span class="share-label">Compártelo</span>
             <div class="share-icons">
-                <!-- Los links se generan solos con JS — no tocar -->
                 <a href="#" id="share-fb" target="_blank" rel="noopener" class="sicon" title="Facebook">
                     <svg viewBox="0 0 24 24" fill="white"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
                 </a>
@@ -133,13 +125,9 @@
         </div>
         <div id="copy-toast" class="copy-toast">✓ Enlace copiado</div>
 
-        <!--
-        ★★★ CAMBIAR:
-            href  → ruta del PDF (misma que en el iframe)
-            download → nombre con que se guardará el archivo
-        -->
+        <!-- ✅ RUTA CORREGIDA en href y nombre de descarga -->
         <a href="../pdfs/soki500argi.pdf"
-           download="Certificado-[Nombre-Curso]-KIARA SOLIER HUAMANI.pdf"
+           download="Certificado-KIARA-SOLIER-HUAMANI.pdf"
            class="btn-descargar">
             Descargar certificado
         </a>
@@ -147,8 +135,7 @@
         <hr class="panel-divider">
         <div class="panel-nav">
             <a href="index.html">← Todos los certificados</a>
-            <!-- ★ CAMBIAR: enlace al siguiente certificado -->
-            <a href="[siguiente-certificado].html">Siguiente →</a>
+            <a href="#">Siguiente →</a>
         </div>
     </div>
 </div>
