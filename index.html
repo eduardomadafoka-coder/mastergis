@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elsa Castañeda Vargas</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html, body {
+            height: 100%;
+            font-family: 'Inter', sans-serif;
+            background: #111;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        /* ────────────────────────────────
+           NAVBAR
+        ──────────────────────────────── */
+        .navbar {
+            background: #161616;
+            height: 58px;
+            display: flex;
+            align-items: center;
+            padding: 0 2.5rem;
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 0.2rem;
+            list-style: none;
+        }
+
+        .nav-left a {
+            color: #ccc;
+            text-decoration: none;
+            font-size: 0.9rem;
+            padding: 6px 16px;
+            transition: color .2s;
+        }
+
+        .nav-left a:hover { color: #fff; }
+
+        .nav-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            border: 1.5px solid #f5a200;
+            color: #f5a200;
+            font-size: 0.78rem;
+            font-weight: 700;
+            padding: 5px 13px;
+            border-radius: 5px;
+            text-decoration: none;
+            letter-spacing: 0.5px;
+            transition: background .2s;
+        }
+
+        .nav-badge:hover { background: rgba(245,162,0,.1); }
+
+        .play-icon {
+            width: 0; height: 0;
+            border-style: solid;
+            border-width: 5px 0 5px 9px;
+            border-color: transparent transparent transparent #f5a200;
+            display: inline-block;
+        }
+
+        .nav-spacer { flex: 1; }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+        }
+
+        .nav-right a {
+            color: #ccc;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color .2s;
+        }
+
+        .nav-right a:hover { color: #fff; }
+
+        .btn-nav {
+            background: #e63329;
+            color: #fff !important;
+            font-weight: 700;
+            padding: 8px 20px;
+            border-radius: 5px;
+        }
+
+        .btn-nav:hover { opacity: .88; }
+
+        /* ────────────────────────────────
+           HERO — pantalla completa
+        ──────────────────────────────── */
+        .hero {
+            height: calc(100vh - 58px);
+            position: relative;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            background: #111;
+        }
+
+        /* Gradiente morado — izquierda */
+        .hero::before {
+            content: '';
+            position: absolute;
+            left: -8%;
+            top: 10%;
+            width: 52%;
+            height: 90%;
+            background: radial-gradient(ellipse at 18% 65%,
+                rgba(140, 0, 200, 0.58) 0%,
+                rgba(90, 0, 140, 0.38) 38%,
+                transparent 68%);
+            pointer-events: none;
+        }
+
+        /* Gradiente verde — derecha */
+        .hero::after {
+            content: '';
+            position: absolute;
+            right: -6%;
+            top: -12%;
+            width: 60%;
+            height: 118%;
+            background: radial-gradient(ellipse at 82% 38%,
+                rgba(0, 170, 125, 0.48) 0%,
+                rgba(0, 105, 85, 0.30) 40%,
+                transparent 68%);
+            pointer-events: none;
+        }
+
+        .hero-inner {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 4rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        /* ── Texto izquierda — exacto al modelo ── */
+        .hero-text {}
+
+        .hero-text h1 {
+            font-size: clamp(1.9rem, 3.2vw, 2.75rem);
+            font-weight: 900;
+            line-height: 1.13;
+            color: #fff;
+            margin-bottom: 1rem;
+        }
+
+        .hero-text p {
+            font-size: clamp(0.9rem, 1.15vw, 1.05rem);
+            color: #bbb;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        /* Botón rojo — igual al modelo */
+        .btn-hero {
+            display: inline-block;
+            background: #e63329;
+            color: #fff;
+            font-size: 1rem;
+            font-weight: 700;
+            padding: 0.85rem 2.2rem;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background .2s, transform .15s;
+            letter-spacing: 0.1px;
+        }
+
+        .btn-hero:hover { background: #c8271e; transform: translateY(-1px); }
+
+        /* ── Círculo oscuro con imagen — derecha ── */
+        .hero-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        /* El círculo oscuro grande */
+        .hero-circle {
+            width: clamp(320px, 42vw, 560px);
+            height: clamp(320px, 42vw, 560px);
+            border-radius: 50%;
+            background: radial-gradient(circle,
+                #1f1f1f 30%,
+                #161616 58%,
+                #0e0e0e 82%,
+                transparent 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: visible;
+            flex-shrink: 0;
+        }
+
+        /*
+         * ════════════════════════════════════════════════
+         *  IMAGEN DEL PROYECTO dentro del círculo
+         *  ★ CAMBIAR: src="img/tu-imagen.jpg"
+         *
+         *  Sugerencia de tamaño: imagen vertical ~600×800px
+         *  o la que tengas — se ajusta sola.
+         * ════════════════════════════════════════════════
+         */
+        .hero-img {
+            width: 60%;
+            max-width: 330px;
+            max-height: 80%;
+            border-radius: 6px;
+            display: block;
+            object-fit: cover;
+            box-shadow:
+                0 4px 24px rgba(0,0,0,.8),
+                0 1px 6px rgba(0,0,0,.5);
+        }
+
+        /* Texto vertical rotado — crédito de la imagen */
+        .hero-credit {
+            position: absolute;
+            right: -8px;
+            top: 50%;
+            transform: translateY(-50%) rotate(90deg);
+            font-size: 0.6rem;
+            color: #555;
+            white-space: nowrap;
+            letter-spacing: 0.4px;
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 860px) {
+            .hero-inner {
+                grid-template-columns: 1fr;
+                text-align: center;
+                padding: 3rem 2rem;
+            }
+            .hero { height: auto; padding: 4rem 0; }
+            .hero-circle { width: 260px; height: 260px; }
+            .hero-credit { display: none; }
+        }
+
+        @media (max-width: 480px) {
+            .navbar { padding: 0 1rem; }
+            .nav-badge { display: none; }
+            .hero-text h1 { font-size: 1.65rem; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+    <ul class="nav-left">
+        <li><a href="#">Inicio</a></li>
+        <li>
+            <a href="certificados/index.html" class="nav-badge">
+                <span class="play-icon"></span>
+                CERTIFICADOS
+            </a>
+        </li>
+        <li><a href="#sobre-mi">Sobre mí</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+    </ul>
+
+    <div class="nav-spacer"></div>
+
+    <div class="nav-right">
+        <a href="https://www.linkedin.com/in/tu-perfil/" target="_blank">LinkedIn</a>
+        <!-- ★ CAMBIAR: tu email -->
+        <a href="mailto:tuemail@gmail.com" class="btn-nav">Contáctame</a>
+    </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-inner">
+
+        <!-- Texto — exacto al modelo -->
+        <div class="hero-text">
+            <h1>Aprende SIG, riesgos,<br>medio ambiente y mucho más</h1>
+            <p>
+                de cero a experto, desde la comodidad de<br>
+                tu hogar.
+            </p>
+            <a href="certificados/index.html" class="btn-hero">Especialízate hoy</a>
+        </div>
+
+        <!-- Imagen dentro del círculo oscuro -->
+        <div class="hero-visual">
+            <div class="hero-circle">
+                <!--
+                ════════════════════════════════════════════════
+                ★ CAMBIAR src con tu imagen:
+                  src="img/tu-mapa.jpg"
+
+                  Ejemplo con la imagen de tus archivos:
+                  src="img/zonificacion-quito.jpg"
+                ════════════════════════════════════════════════
+                -->
+                <img
+                    class="hero-img"
+                    src="img/proyecto-destacado.jpg"
+                    alt="Proyecto de Geociencias"
+                    onerror="this.style.display='none'"
+                >
+            </div>
+            <!-- ★ CAMBIAR: nombre para el crédito vertical -->
+            <span class="hero-credit">Alumno: Elsa Castañeda Vargas</span>
+        </div>
+
+    </div>
+</section>
+
+</body>
+</html>
