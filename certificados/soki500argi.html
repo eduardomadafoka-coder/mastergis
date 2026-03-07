@@ -9,86 +9,94 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-    :root { --rojo:#e63329; --amarillo:#f5a200; --negro:#1a1a1a; --oscuro:#1e2530; --gris-bg:#e8e8e8; --gris-icon:#4a4a4a; }
+    :root {
+        --rojo:      #e63329;
+        --amarillo:  #f5a200;
+        --negro:     #1a1a1a;
+        --oscuro:    #1e2530;
+        --gris-bg:   #e8e8e8;
+        --gris-icon: #4a4a4a;
+
+        --cert-w: 530px;
+    }
+
     body { font-family:'Inter',sans-serif; background:var(--gris-bg); color:var(--negro); min-height:100vh; }
 
-    /* NAVBAR */
+    /* ── NAVBAR ── */
     .navbar { background:#1c1c1c; height:58px; display:flex; align-items:center; padding:0 2rem; gap:2rem; position:sticky; top:0; z-index:200; box-shadow:0 2px 8px rgba(0,0,0,.5); }
     .nav-logo { display:flex; align-items:center; gap:8px; text-decoration:none; }
     .nav-logo-box { background:linear-gradient(135deg,var(--rojo) 40%,var(--amarillo)); color:white; font-weight:800; font-size:0.85rem; padding:5px 11px; border-radius:5px; letter-spacing:1px; }
     .nav-links { display:flex; gap:1.75rem; list-style:none; }
     .nav-links a { color:#ccc; text-decoration:none; font-size:0.88rem; transition:color .2s; }
-    .nav-links a:hover,.nav-links a.active { color:#fff; }
+    .nav-links a:hover, .nav-links a.active { color:#fff; }
     .nav-spacer { flex:1; }
     .nav-back { color:#aaa; font-size:0.82rem; text-decoration:none; transition:color .2s; }
     .nav-back:hover { color:var(--amarillo); }
 
-    /* BREADCRUMB */
+    /* ── BREADCRUMB ── */
     .breadcrumb { max-width:1100px; margin:1.4rem auto 0; padding:0 2rem; font-size:0.78rem; color:#999; display:flex; align-items:center; gap:6px; }
     .breadcrumb a { color:var(--rojo); text-decoration:none; }
 
-    /* LAYOUT */
-    .cert-layout { max-width:1100px; margin:2.5rem auto 5rem; padding:0 2rem; display:grid; grid-template-columns:530px 1fr; gap:4rem; align-items:start; }
-    .cert-frame-wrap { position:sticky; top:76px; }
+    /* ── LAYOUT PRINCIPAL ── */
+    .cert-layout {
+        max-width: 1100px;
+        margin: 2.5rem auto 5rem;
+        padding: 0 2rem;
+        display: grid;
+        grid-template-columns: var(--cert-w) 1fr;
+        gap: 4rem;
+        align-items: start;
+    }
 
-    /* Marco oscuro exterior */
+    /* ── COLUMNA IZQUIERDA: Marco del certificado ── */
+    .cert-frame-wrap { position: sticky; top: 76px; }
+
+    /* Marco oscuro exterior — mismo grosor uniforme en los 4 lados */
     .cert-outer-frame {
-        background:var(--oscuro);
-        border-radius:4px;
-        padding:10px;
-        box-shadow:0 4px 20px rgba(0,0,0,.45);
-        /* Bloquea cualquier interacción que se salga del marco */
-        overflow:hidden;
+        background: var(--oscuro);
+        border-radius: 6px;
+        padding: 10px;                          /* grosor del marco */
+        box-shadow: 0 6px 28px rgba(0,0,0,.5);
+        overflow: hidden;
+        width: var(--cert-w);
     }
 
-    /* Contenedor del PDF — posición relativa para la capa de bloqueo */
+    /* Contenedor del PDF con ratio exacto 280×395mm */
     .cert-pdf-container {
-        background:#fff;
-        width:100%;
-        height:420px;
-        position:relative;
-        overflow:hidden;
+        position: relative;
+        width: 100%;
+        /* Alto = ancho × (395/280) = ancho × 1.4107 */
+        height: 390px;
+        background: #fff;
+        overflow: hidden;
     }
 
-    /*
-     * El iframe muestra el PDF con parámetros para ocultar
-     * la barra de herramientas del navegador:
-     *   #toolbar=0   → oculta la barra superior
-     *   &navpanes=0  → oculta el panel de miniaturas lateral
-     *   &scrollbar=0 → oculta la barra de scroll
-     *   &view=Fit    → ajusta el PDF al contenedor
-     *   &zoom=page-fit → zoom para que quepa una página completa
-     */
+    /* iframe ocupa todo el contenedor, sin barra de herramientas */
     .cert-pdf-container iframe {
-        width:100%;
-        height:100%;
-        border:none;
-        display:block;
-        /* Desactiva la selección de texto dentro del iframe */
-        pointer-events:none;
+        position: absolute;
+        top: 0; left: 0;
+        width: 100%;
+        height: 100%;
+        border: none;
+        display: block;
+        pointer-events: none;   /* bloquea interacción con el visor */
     }
 
-    /*
-     * Capa transparente encima del PDF.
-     * Bloquea completamente cualquier clic o interacción
-     * con el visor del navegador — el usuario solo puede
-     * ver el PDF, no tocarlo.
-     */
+    /* Capa invisible que impide cualquier clic sobre el PDF */
     .pdf-block-layer {
-        position:absolute;
-        inset:0;
-        z-index:10;
-        cursor:default;
-        /* transparent — no se ve, pero bloquea todo clic */
-        background:transparent;
+        position: absolute;
+        inset: 0;
+        z-index: 10;
+        background: transparent;
+        cursor: default;
     }
 
-    /* PANEL DERECHO */
-    .cert-panel { padding-top:0.5rem; }
+    /* ── COLUMNA DERECHA: Panel ── */
+    .cert-panel { padding-top: 0.5rem; }
     .panel-title { font-size:1.95rem; font-weight:800; color:var(--negro); line-height:1.2; margin-bottom:0.85rem; }
     .panel-subtitle { font-size:0.95rem; color:#555; line-height:1.65; margin-bottom:1.75rem; }
 
-    /* COMPARTIR */
+    /* Compartir */
     .share-row { display:flex; align-items:center; gap:1rem; margin-bottom:2rem; flex-wrap:wrap; }
     .share-label { font-size:0.9rem; font-weight:600; color:var(--negro); flex-shrink:0; }
     .share-icons { display:flex; align-items:center; gap:0.5rem; }
@@ -97,25 +105,8 @@
     .sicon svg { width:17px; height:17px; display:block; }
     .sicon-copy { border-radius:8px; background:#5a5a5a; }
 
-    /* BOTÓN DESCARGAR */
-    .btn-descargar {
-        display:flex;
-        align-items:center;
-        justify-content:center;
-        background:var(--rojo);
-        color:#fff;
-        font-family:'Inter',sans-serif;
-        font-size:1rem;
-        font-weight:700;
-        padding:0.9rem 2rem;
-        border-radius:6px;
-        text-decoration:none;
-        border:none;
-        cursor:pointer;
-        transition:background .2s,transform .15s;
-        width:100%;
-        max-width:340px;
-    }
+    /* Botón rojo */
+    .btn-descargar { display:flex; align-items:center; justify-content:center; background:var(--rojo); color:#fff; font-family:'Inter',sans-serif; font-size:1rem; font-weight:700; padding:0.9rem 2rem; border-radius:6px; text-decoration:none; border:none; cursor:pointer; transition:background .2s,transform .15s; width:100%; max-width:340px; }
     .btn-descargar:hover { background:#c8271e; transform:translateY(-1px); }
 
     .copy-toast { display:none; font-size:0.78rem; color:#22c55e; font-weight:600; margin-top:0.6rem; }
@@ -126,11 +117,12 @@
     footer { background:#1c1c1c; color:#888; text-align:center; padding:1.25rem; font-size:0.8rem; }
     footer a { color:var(--amarillo); text-decoration:none; }
 
-    @media(max-width:900px){
-        .cert-layout{grid-template-columns:1fr;gap:2rem;}
-        .cert-frame-wrap{position:static;}
-        .cert-pdf-container{height:320px;}
-        .btn-descargar{max-width:100%;}
+    /* ── RESPONSIVE ── */
+    @media (max-width: 960px) {
+        .cert-layout { grid-template-columns: 1fr; gap: 2rem; }
+        .cert-frame-wrap { position: static; width: 100%; }
+        .cert-outer-frame { width: 100%; }
+        .btn-descargar { max-width: 100%; }
     }
     </style>
 </head>
@@ -156,32 +148,20 @@
 
 <div class="cert-layout">
 
-    <!-- IZQUIERDA: PDF enmarcado -->
+    <!-- PDF enmarcado con proporción 280×395mm -->
     <div class="cert-frame-wrap">
         <div class="cert-outer-frame">
             <div class="cert-pdf-container">
-
-                <!--
-                    Los parámetros después del # controlan el visor:
-                    toolbar=0   → sin barra superior
-                    navpanes=0  → sin panel lateral de miniaturas
-                    scrollbar=0 → sin barra de scroll
-                    view=Fit    → ajusta la página al tamaño del iframe
-                -->
                 <iframe
-                    id="cert-iframe"
-                    src="../pdfs/soki500argi.pdf#toolbar=0&navpanes=0&scrollbar=0&view=Fit"
+                    src="../pdfs/soki500argi.pdf#toolbar=0&navpanes=0&scrollbar=0&view=Fit&zoom=page-fit"
                     title="Certificado KIARA SOLIER HUAMANI">
                 </iframe>
-
-                <!-- Capa invisible que bloquea toda interacción con el PDF -->
                 <div class="pdf-block-layer"></div>
-
             </div>
         </div>
     </div>
 
-    <!-- DERECHA: Panel de felicitaciones -->
+    <!-- Panel derecho -->
     <div class="cert-panel">
         <h2 class="panel-title">¡Muchas felicidades!</h2>
         <p class="panel-subtitle">
@@ -213,7 +193,6 @@
         </div>
         <div id="copy-toast" class="copy-toast">✓ Enlace copiado</div>
 
-        <!-- Único botón de descarga -->
         <a href="../pdfs/soki500argi.pdf"
            download="Certificado-KIARA-SOLIER-HUAMANI.pdf"
            class="btn-descargar">
