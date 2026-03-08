@@ -213,12 +213,12 @@
 
         <!-- Input -->
         <div class="field-input-wrap">
-            <label class="field-label" id="input-label">Código del certificado <span>*</span></label>
+            <label class="field-label" id="input-label">ID del certificado <span>*</span></label>
             <input
                 type="text"
                 class="field-input"
                 id="campo-busqueda"
-                placeholder="Ej: romo475arcgi"
+                placeholder="Ej: COMCO030513MMCCPMA9"
                 oninput="limpiarResultado()"
                 onkeydown="if(event.key==='Enter') buscar()"
             >
@@ -239,7 +239,7 @@ function buscar() {
     var codigo = document.getElementById('campo-busqueda').value.trim();
     if (!codigo) return;
 
-    var rutaPdf = 'pdfs/' + codigo + '.pdf';
+    var rutaPdf = 'pdfs/codigo/' + codigo + '.pdf';
 
     // Intenta cargar el PDF — si existe muestra validación
     fetch(rutaPdf, { method: 'HEAD' })
