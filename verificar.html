@@ -258,17 +258,19 @@ function buscar() {
 function mostrarEncontrado(codigo, rutaPdf) {
     var box = document.getElementById('result-box');
     box.innerHTML =
-        '<div class="result-found">' +
+        '<div style="display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;background:#f0fdf4;border:1.5px solid #22c55e;border-radius:8px;padding:1rem 1.5rem;">' +
             '<div>' +
                 '<p style="font-size:0.88rem;color:#166534;font-weight:700;margin-bottom:0.3rem;">✅ Certificado verificado correctamente</p>' +
                 '<p style="font-size:0.8rem;color:#555;">Código: <strong>' + codigo + '</strong></p>' +
             '</div>' +
-            '<a href="' + rutaPdf + '" download="Certificado-' + codigo + '.pdf" class="btn-ver">⬇ Descargar certificado</a>' +
+            '<a href="' + rutaPdf + '" download="Certificado-' + codigo + '.pdf" style="background:#22c55e;color:#fff;font-size:.88rem;font-weight:700;padding:.55rem 1.4rem;border-radius:6px;text-decoration:none;white-space:nowrap;">⬇ Descargar certificado</a>' +
         '</div>';
 }
 
 function mostrarNoEncontrado() {
-    setTimeout(function(){ window.location.reload(); }, 800);
+    var box = document.getElementById('result-box');
+    box.innerHTML = '<div style="background:#fff5f5;border:1.5px solid #fca5a5;border-radius:8px;padding:1rem 1.5rem;font-size:.9rem;color:#991b1b;font-weight:500;">❌ No se encontró ningún certificado con ese código. Verifica e intenta de nuevo.</div>';
+    setTimeout(function(){ window.location.reload(); }, 3000);
 }
 
 function limpiarResultado() {
