@@ -3,245 +3,325 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Verificar Certificado · MasterGIS</title>
+    <title>Elsa Castañeda Vargas</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&display=swap" rel="stylesheet">
     <style>
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-    :root { --rojo: #e63329; --amarillo: #f5a200; }
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-    body { font-family: 'Inter', sans-serif; background: #f0f0f0; min-height: 100vh; }
+        html, body {
+            height: 100%;
+            font-family: 'Inter', sans-serif;
+            background: #111;
+            color: #fff;
+            overflow-x: hidden;
+        }
 
-    /* ── NAVBAR ── */
-    .navbar { background: #1c1c1c; height: 58px; display: flex; align-items: center; padding: 0 2.5rem; position: sticky; top: 0; z-index: 200; box-shadow: 0 2px 8px rgba(0,0,0,.5); }
-    .nav-logo { display: flex; align-items: center; text-decoration: none; }
-    .nav-spacer { flex: 1; }
-    .nav-inicio { color: #ccc; font-size: 0.9rem; text-decoration: none; transition: color .2s; }
-    .nav-inicio:hover { color: #fff; }
+        /* ────────────────────────────────
+           NAVBAR
+        ──────────────────────────────── */
+        .navbar {
+            background: #161616;
+            height: 58px;
+            display: flex;
+            align-items: center;
+            padding: 0 2.5rem;
+        }
 
-    /* ── HERO ROJO ── */
-    .hero {
-        background-color: var(--rojo);
-        background-image:
-            url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='400' opacity='0.12'%3E%3Ccircle cx='200' cy='200' r='180' fill='none' stroke='white' stroke-width='1'/%3E%3Ccircle cx='200' cy='200' r='140' fill='none' stroke='white' stroke-width='1'/%3E%3Ccircle cx='200' cy='200' r='100' fill='none' stroke='white' stroke-width='1'/%3E%3Ccircle cx='600' cy='150' r='120' fill='none' stroke='white' stroke-width='1'/%3E%3Ccircle cx='600' cy='150' r='80' fill='none' stroke='white' stroke-width='1'/%3E%3Cline x1='0' y1='200' x2='800' y2='200' stroke='white' stroke-width='0.5'/%3E%3Cline x1='400' y1='0' x2='400' y2='400' stroke='white' stroke-width='0.5'/%3E%3C/svg%3E");
-        background-size: cover;
-        background-position: center;
-        padding: 4rem 2rem 7rem;
-        text-align: center;
-        position: relative;
-    }
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 0.2rem;
+            list-style: none;
+        }
 
-    .hero h1 {
-        font-size: clamp(1.8rem, 3.5vw, 2.6rem);
-        font-weight: 800;
-        color: #fff;
-        margin-bottom: 1.25rem;
-    }
+        .nav-left a {
+            color: #ccc;
+            text-decoration: none;
+            font-size: 0.9rem;
+            padding: 6px 16px;
+            transition: color .2s;
+        }
 
-    .hero p {
-        font-size: clamp(0.88rem, 1.3vw, 1rem);
-        color: rgba(255,255,255,0.9);
-        line-height: 1.75;
-        max-width: 680px;
-        margin: 0 auto;
-    }
+        .nav-left a:hover { color: #fff; }
 
-    /* ── TARJETA BLANCA (solapada sobre el hero) ── */
-    .search-card {
-        background: #fff;
-        border-radius: 12px;
-        box-shadow: 0 8px 40px rgba(0,0,0,.15);
-        max-width: 900px;
-        margin: -4rem auto 3rem;
-        padding: 2.5rem 2.5rem 2rem;
-        position: relative;
-        z-index: 10;
-    }
+        .nav-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            border: 1.5px solid #f5a200;
+            color: #f5a200;
+            font-size: 0.78rem;
+            font-weight: 700;
+            padding: 5px 13px;
+            border-radius: 5px;
+            text-decoration: none;
+            letter-spacing: 0.5px;
+            transition: background .2s;
+        }
 
-    .search-form {
-        display: flex;
-        align-items: flex-end;
-        gap: 1.5rem;
-        flex-wrap: wrap;
-    }
+        .nav-badge:hover { background: rgba(245,162,0,.1); }
 
-    /* Selector "Buscar por" */
-    .field-group { display: flex; flex-direction: column; gap: 0.4rem; }
-    .field-label { font-size: 0.88rem; font-weight: 600; color: #333; }
-    .field-label span { color: var(--rojo); margin-left: 2px; }
+        .play-icon {
+            width: 0; height: 0;
+            border-style: solid;
+            border-width: 5px 0 5px 9px;
+            border-color: transparent transparent transparent #f5a200;
+            display: inline-block;
+        }
 
-    .field-select {
-        padding: 0.75rem 1rem;
-        border: 1.5px solid #ccc;
-        border-radius: 6px;
-        font-size: 0.9rem;
-        color: #333;
-        background: #fff;
-        min-width: 180px;
-        cursor: pointer;
-        outline: none;
-        transition: border-color .2s;
-    }
-    .field-select:focus { border-color: var(--rojo); }
+        .nav-spacer { flex: 1; }
 
-    /* Input principal */
-    .field-input-wrap { flex: 1; min-width: 260px; display: flex; flex-direction: column; gap: 0.4rem; }
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+        }
 
-    .field-input {
-        padding: 0.75rem 1rem;
-        border: 1.5px solid #ccc;
-        border-radius: 6px;
-        font-size: 0.9rem;
-        color: #333;
-        outline: none;
-        transition: border-color .2s;
-        width: 100%;
-    }
-    .field-input:focus { border-color: var(--rojo); }
-    .field-input::placeholder { color: #bbb; }
+        .nav-right a {
+            color: #ccc;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color .2s;
+        }
 
-    /* Botón buscar */
-    .btn-buscar {
-        background: var(--rojo);
-        color: #fff;
-        font-family: 'Inter', sans-serif;
-        font-size: 0.95rem;
-        font-weight: 700;
-        padding: 0.75rem 2rem;
-        border: none;
-        border-radius: 6px;
-        cursor: pointer;
-        transition: background .2s, transform .15s;
-        white-space: nowrap;
-        align-self: flex-end;
-        margin-bottom: 0;
-    }
-    .btn-buscar:hover { background: #c8271e; transform: translateY(-1px); }
+        .nav-right a:hover { color: #fff; }
 
-    /* ── RESULTADO ── */
-    .result-area { margin-top: 1.5rem; }
+        .btn-nav {
+            background: #e63329;
+            color: #fff !important;
+            font-weight: 700;
+            padding: 8px 20px;
+            border-radius: 5px;
+        }
 
-    .result-found {
-        display: none;
-        background: #f0fdf4;
-        border: 1.5px solid #22c55e;
-        border-radius: 8px;
-        padding: 1rem 1.5rem;
-        display: none;
-        align-items: center;
-        justify-content: space-between;
-        gap: 1rem;
-        flex-wrap: wrap;
-    }
+        .btn-nav:hover { opacity: .88; }
 
-    .result-found p { font-size: 0.9rem; color: #166534; font-weight: 500; }
+        /* ────────────────────────────────
+           HERO — pantalla completa
+        ──────────────────────────────── */
+        .hero {
+            height: calc(100vh - 58px);
+            position: relative;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            background: #111;
+        }
 
-    .btn-ver {
-        background: #22c55e;
-        color: #fff;
-        font-size: 0.88rem;
-        font-weight: 700;
-        padding: 0.55rem 1.4rem;
-        border-radius: 6px;
-        text-decoration: none;
-        transition: background .2s;
-        white-space: nowrap;
-    }
-    .btn-ver:hover { background: #16a34a; }
+        /* Gradiente morado — izquierda */
+        .hero::before {
+            content: '';
+            position: absolute;
+            left: -8%;
+            top: 10%;
+            width: 52%;
+            height: 90%;
+            background: radial-gradient(ellipse at 18% 65%,
+                rgba(140, 0, 200, 0.58) 0%,
+                rgba(90, 0, 140, 0.38) 38%,
+                transparent 68%);
+            pointer-events: none;
+        }
 
-    .result-notfound {
-        display: none;
-        background: #fff5f5;
-        border: 1.5px solid #fca5a5;
-        border-radius: 8px;
-        padding: 1rem 1.5rem;
-        font-size: 0.9rem;
-        color: #991b1b;
-        font-weight: 500;
-    }
+        /* Gradiente verde — derecha */
+        .hero::after {
+            content: '';
+            position: absolute;
+            right: -6%;
+            top: -12%;
+            width: 60%;
+            height: 118%;
+            background: radial-gradient(ellipse at 82% 38%,
+                rgba(0, 170, 125, 0.48) 0%,
+                rgba(0, 105, 85, 0.30) 40%,
+                transparent 68%);
+            pointer-events: none;
+        }
 
-    /* ── LISTA DE CERTIFICADOS DISPONIBLES ── */
-    .certs-hint {
-        margin-top: 1rem;
-        font-size: 0.78rem;
-        color: #999;
-        text-align: center;
-    }
+        .hero-inner {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 4rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            gap: 2rem;
+        }
 
-    footer { background: #1c1c1c; color: #888; text-align: center; padding: 1.25rem; font-size: 0.8rem; margin-top: 3rem; }
-    footer a { color: var(--amarillo); text-decoration: none; }
+        /* ── Texto izquierda — exacto al modelo ── */
+        .hero-text {}
 
-    @media (max-width: 640px) {
-        .search-form { flex-direction: column; }
-        .btn-buscar { width: 100%; }
-        .search-card { margin: -3rem 1rem 2rem; padding: 1.5rem; }
-    }
+        .hero-text h1 {
+            font-size: clamp(1.9rem, 3.2vw, 2.75rem);
+            font-weight: 900;
+            line-height: 1.13;
+            color: #fff;
+            margin-bottom: 1rem;
+        }
+
+        .hero-text p {
+            font-size: clamp(0.9rem, 1.15vw, 1.05rem);
+            color: #bbb;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        /* Botón rojo — igual al modelo */
+        .btn-hero {
+            display: inline-block;
+            background: #e63329;
+            color: #fff;
+            font-size: 1rem;
+            font-weight: 700;
+            padding: 0.85rem 2.2rem;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background .2s, transform .15s;
+            letter-spacing: 0.1px;
+        }
+
+        .btn-hero:hover { background: #c8271e; transform: translateY(-1px); }
+
+        /* ── Círculo oscuro con imagen — derecha ── */
+        .hero-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        /* El círculo oscuro grande */
+        .hero-circle {
+            width: clamp(320px, 42vw, 560px);
+            height: clamp(320px, 42vw, 560px);
+            border-radius: 50%;
+            background: radial-gradient(circle,
+                #1f1f1f 30%,
+                #161616 58%,
+                #0e0e0e 82%,
+                transparent 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: visible;
+            flex-shrink: 0;
+        }
+
+        /*
+         * ════════════════════════════════════════════════
+         *  IMAGEN DEL PROYECTO dentro del círculo
+         *  ★ CAMBIAR: src="img/tu-imagen.jpg"
+         *
+         *  Sugerencia de tamaño: imagen vertical ~600×800px
+         *  o la que tengas — se ajusta sola.
+         * ════════════════════════════════════════════════
+         */
+        .hero-img {
+            width: 60%;
+            max-width: 330px;
+            max-height: 80%;
+            border-radius: 6px;
+            display: block;
+            object-fit: cover;
+            box-shadow:
+                0 4px 24px rgba(0,0,0,.8),
+                0 1px 6px rgba(0,0,0,.5);
+        }
+
+        /* Texto vertical rotado — crédito de la imagen */
+        .hero-credit {
+            position: absolute;
+            right: -8px;
+            top: 50%;
+            transform: translateY(-50%) rotate(90deg);
+            font-size: 0.6rem;
+            color: #555;
+            white-space: nowrap;
+            letter-spacing: 0.4px;
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 860px) {
+            .hero-inner {
+                grid-template-columns: 1fr;
+                text-align: center;
+                padding: 3rem 2rem;
+            }
+            .hero { height: auto; padding: 4rem 0; }
+            .hero-circle { width: 260px; height: 260px; }
+            .hero-credit { display: none; }
+        }
+
+        @media (max-width: 480px) {
+            .navbar { padding: 0 1rem; }
+            .nav-badge { display: none; }
+            .hero-text h1 { font-size: 1.65rem; }
+        }
     </style>
 </head>
 <body>
 
 <!-- NAVBAR -->
 <nav class="navbar">
-    <a href="index.html" class="nav-logo">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 210 36" width="210" height="36">
-            <circle cx="16" cy="18" r="11" fill="none" stroke="white" stroke-width="1.3"/>
-            <ellipse cx="16" cy="18" rx="11" ry="5" fill="none" stroke="white" stroke-width="1"/>
-            <line x1="16" y1="7" x2="16" y2="29" stroke="white" stroke-width="1"/>
-            <line x1="5" y1="18" x2="27" y2="18" stroke="white" stroke-width="1"/>
-            <path d="M18,4.8 Q18,3.1 19.3,3.9 L30,10.8 Q31.2,11.5 30,12.2 L19.3,19.1 Q18,19.9 18,18.2 Z" fill="white"/>
-            <text x="36" y="25" font-family="Arial Narrow, Impact, Arial, sans-serif" font-weight="400" font-size="14" fill="white" letter-spacing="1">MASTERGIS</text>
-        </svg>
-    </a>
+    <ul class="nav-left">
+        <li><a href="#">Inicio</a></li>
+        <li>
+            <a href="verificar.html" class="nav-badge">
+                <span class="play-icon"></span>
+                CERTIFICADOS
+            </a>
+        </li>
+        <li><a href="#sobre-mi">Sobre mí</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+    </ul>
+
     <div class="nav-spacer"></div>
-    <a href="index.html" class="nav-inicio">Inicio</a>
+
+    <div class="nav-right">
+        <a href="https://www.linkedin.com/in/tu-perfil/" target="_blank">LinkedIn</a>
+        <!-- ★ CAMBIAR: tu email -->
+        <a href="/cdn-cgi/l/email-protection#ef9b9a8a828e8683af88828e8683c18c8082" class="btn-nav">Contáctame</a>
+    </div>
 </nav>
 
-<!-- HERO ROJO -->
-<div class="hero">
-    <h1>¡Verifica tu certificado!</h1>
-    <p>
-        Esta opción te permite confirmar los datos y la validez de tu certificado,<br>
-        para ello ingresa el nombre del certificado o el código en el recuadro inferior<br>
-        y posteriormente dale clic al botón "Buscar certificado".
-    </p>
-</div>
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-inner">
 
-<!-- TARJETA DE BÚSQUEDA -->
-<div class="search-card">
-    <div class="search-form">
-
-        <!-- Input -->
-        <div class="field-input-wrap">
-            <label class="field-label" id="input-label">Código del certificado <span>*</span></label>
-            <input
-                type="text"
-                class="field-input"
-                id="campo-busqueda"
-                placeholder="Ej: romo475arcgi"
-                oninput="limpiarResultado()"
-                onkeydown="if(event.key==='Enter') buscar()"
-            >
+        <!-- Texto — exacto al modelo -->
+        <div class="hero-text">
+            <h1>Aprende SIG, riesgos,<br>medio ambiente y mucho más</h1>
+            <p>
+                de cero a experto, desde la comodidad de<br>
+                tu hogar.
+            </p>
+            <a href="verificar.html" class="btn-hero">Especialízate hoy</a>
         </div>
 
-        <!-- Botón -->
-        <button class="btn-buscar" onclick="buscar()">Buscar certificado</button>
-    </div>
+        <!-- Imagen dentro del círculo oscuro -->
+        <div class="hero-visual">
+            <div class="hero-circle">
+                <!--
+                ════════════════════════════════════════════════
+                ★ CAMBIAR src con tu imagen:
+                  src="img/tu-mapa.jpg"
 
-
-</div>
-
-<footer>
-    <p>© 2026 <a href="index.html">MasterGIS</a> — Todos los derechos reservados</p>
-</footer>
-
-<script>
-function buscar() {
-    var codigo = document.getElementById('campo-busqueda').value.trim();
-    if (!codigo) return;
-    window.location.href = 'certificados/' + codigo + '.html';
-}
-function limpiarResultado() {}
-</script>
-</body>
-</html>
+                  Ejemplo con la imagen de tus archivos:
+                  src="img/zonificacion-quito.jpg"
+                ════════════════════════════════════════════════
+                -->
+                <img
+                    class="hero-img"
+                    src="img/proyecto-destacado.jpg"
+                    alt="Proyecto de Geociencias"
+                    onerror="this.style.display='none'"
+                >
+            </div>
+            <!-- ★ CAMBIAR: nombre para el crédito vertical -->
+            <span class="hero-credit">Alumno: Elsa Castañeda Vargas</span>
+        </div>
