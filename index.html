@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MasterGIS: Cursos online de SIG, Medio Ambiente, Geología,Minería...</title>
+    <title>Elsa Castañeda Vargas</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&display=swap" rel="stylesheet">
@@ -32,7 +32,7 @@
         .nav-left {
             display: flex;
             align-items: center;
-            gap: 0.2rem;
+            gap: 0rem;
             list-style: none;
         }
 
@@ -268,31 +268,41 @@
 
 <!-- NAVBAR -->
 <nav class="navbar">
-    <ul class="nav-left">
-        <li><a href="#">Inicio</a></li>
+    <!-- Logo MASTERGIS — izquierda -->
+    <a href="#" style="display:flex;align-items:center;text-decoration:none;margin-right:-2.4rem;flex-shrink:0;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 215 36" width="215" height="36">
+            <circle cx="16" cy="18" r="11" fill="none" stroke="white" stroke-width="1.3"/>
+            <ellipse cx="16" cy="18" rx="11" ry="5" fill="none" stroke="white" stroke-width="1"/>
+            <line x1="16" y1="7" x2="16" y2="29" stroke="white" stroke-width="1"/>
+            <line x1="5" y1="18" x2="27" y2="18" stroke="white" stroke-width="1"/>
+            <path d="M18,4.8 Q18,3.1 19.3,3.9 L30,10.8 Q31.2,11.5 30,12.2 L19.3,19.1 Q18,19.9 18,18.2 Z" fill="white"/>
+            <text x="36" y="26" font-family="Arial Narrow, Impact, Arial, sans-serif" font-weight="400" font-size="17" fill="white" letter-spacing="1">MASTERGIS</text>
+        </svg>
+    </a>
+    <ul class="nav-left" style="margin-left:0;">
+        <!-- ★ CAMBIAR: href="https://tu-link-buscar-cursos.com" -->
+        <li><a href="#">Cursos</a></li>
         <li>
             <a href="verificar.html" class="nav-badge">
                 <span class="play-icon"></span>
                 CERTIFICADOS
             </a>
         </li>
-        <!-- ★ CAMBIAR: pon el link de Clases en vivo -->
-        <li><a href="#">https://mastergis.com/clases</a></li>
-        <!-- ★ CAMBIAR: pon el link de Empresas -->
-        <li><a href="#">https://mastergis.com/empresas</a></li>
-        <!-- ★ CAMBIAR: pon el link de Buscar cursos -->
-        <li><a href="#">https://mastergis.com/cursos</a></li>
-        <!-- ★ CAMBIAR: pon el link de Promociones -->
+        <!-- ★ CAMBIAR: href="https://tu-link-clases-en-vivo.com" -->
+        <li><a href="#">Clases en vivo</a></li>
+        <!-- ★ CAMBIAR: href="https://tu-link-empresas.com" -->
+        <li><a href="#">Empresas</a></li>
+        <!-- ★ CAMBIAR: href="https://tu-link-promociones.com" -->
         <li><a href="#">Promociones</a></li>
     </ul>
 
     <div class="nav-spacer"></div>
 
     <div class="nav-right">
-        <!-- ★ CAMBIAR: pon el link de Entrar (login) -->
-        <a href="#">https://mastergis.com/login</a>
-        <!-- ★ CAMBIAR: pon el link de Registrarse -->
-        <a href="#" class="btn-nav">https://mastergis.com/register</a>
+        <!-- ★ CAMBIAR: href="https://tu-link-login.com" -->
+        <a href="#">Entrar</a>
+        <!-- ★ CAMBIAR: href="https://tu-link-registro.com" -->
+        <a href="#" class="btn-nav">Registrarse</a>
     </div>
 </nav>
 
@@ -325,7 +335,7 @@
                 -->
                 <img
                     class="hero-img"
-                    src="img/fondo_principal.jpg"
+                    src="img/fondo_principal.png"
                     alt="Proyecto de Geociencias"
                     onerror="this.style.display='none'"
                 >
