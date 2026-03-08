@@ -3,7 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--
+    ╔══════════════════════════════════════════════════════════╗
+    ║  SOLO CAMBIAS 2 COSAS CADA VEZ QUE COPIAS ESTE ARCHIVO  ║
+    ║                                                          ║
+    ║  1. El <title> (pestaña del navegador)                   ║
+    ║  2. El NOMBRE VISIBLE del alumno (línea marcada abajo)   ║
+    ║                                                          ║
+    ║  El PDF y la imagen se detectan solos por el nombre      ║
+    ║  del archivo HTML. Ejemplo:                              ║
+    ║    HTML:  certificados/kiso500argi.html                  ║
+    ║    PDF:   pdfs/kiso500argi.pdf         ← automático      ║
+    ║    IMG:   img/certificados/kiso500argi.png ← automático  ║
+    ╚══════════════════════════════════════════════════════════╝
+    -->
+
+    <!-- ★ CAMBIAR 1: título de la pestaña -->
     <title>Certificado · KIARA SOLIER HUAMANI</title>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -17,10 +35,7 @@
         --gris-bg:   #e8e8e8;
         --gris-icon: #4a4a4a;
     }
-
     body { font-family:'Inter',sans-serif; background:var(--gris-bg); color:var(--negro); min-height:100vh; }
-
-    /* ── NAVBAR ── */
     .navbar { background:#1c1c1c; height:58px; display:flex; align-items:center; padding:0 2rem; gap:2rem; position:sticky; top:0; z-index:200; box-shadow:0 2px 8px rgba(0,0,0,.5); }
     .nav-logo { display:flex; align-items:center; gap:8px; text-decoration:none; }
     .nav-logo-box { background:linear-gradient(135deg,var(--rojo) 40%,var(--amarillo)); color:white; font-weight:800; font-size:0.85rem; padding:5px 11px; border-radius:5px; letter-spacing:1px; }
@@ -30,58 +45,15 @@
     .nav-spacer { flex:1; }
     .nav-back { color:#aaa; font-size:0.82rem; text-decoration:none; transition:color .2s; }
     .nav-back:hover { color:var(--amarillo); }
-
-    /* ── BREADCRUMB ── */
     .breadcrumb { max-width:1100px; margin:1.4rem auto 0; padding:0 2rem; font-size:0.78rem; color:#999; display:flex; align-items:center; gap:6px; }
     .breadcrumb a { color:var(--rojo); text-decoration:none; }
-
-    /* ── LAYOUT 2 COLUMNAS ── */
-    .cert-layout {
-        max-width: 1100px;
-        margin: 2.5rem auto 5rem;
-        padding: 0 2rem;
-        display: grid;
-        grid-template-columns: 480px 1fr;
-        gap: 4rem;
-        align-items: start;
-    }
-
-    /* ── COLUMNA IZQUIERDA ── */
-    .cert-frame-wrap { position: sticky; top: 76px; }
-
-    /* Marco oscuro — padding uniforme en los 4 lados */
-    .cert-outer-frame {
-        background: var(--oscuro);
-        border-radius: 6px;
-        padding: 10px;
-        box-shadow: 0 6px 28px rgba(0,0,0,.5);
-        display: inline-block;
-        width: 100%;
-    }
-
-    /*
-     * ★ CAMBIAR: src con tu imagen
-     *   ../img/certificados/soki500argi.jpg
-     *
-     * La imagen se ajusta sola al ancho del marco
-     * y mantiene sus proporciones originales automáticamente.
-     */
-    .cert-img {
-        width: 100%;
-        display: block;
-        border-radius: 2px;
-        /* Sin height fijo — el alto lo define la imagen misma */
-        user-select: none;
-        pointer-events: none;   /* no se puede arrastrar ni hacer clic derecho */
-        -webkit-user-drag: none;
-    }
-
-    /* ── COLUMNA DERECHA: Panel ── */
-    .cert-panel { padding-top: 0.5rem; }
+    .cert-layout { max-width:1100px; margin:2.5rem auto 5rem; padding:0 2rem; display:grid; grid-template-columns:480px 1fr; gap:4rem; align-items:start; }
+    .cert-frame-wrap { position:sticky; top:76px; }
+    .cert-outer-frame { background:var(--oscuro); border-radius:6px; padding:10px; box-shadow:0 6px 28px rgba(0,0,0,.5); display:inline-block; width:100%; }
+    .cert-img { width:100%; display:block; border-radius:2px; user-select:none; pointer-events:none; -webkit-user-drag:none; }
+    .cert-panel { padding-top:0.5rem; }
     .panel-title { font-size:1.95rem; font-weight:800; color:var(--negro); line-height:1.2; margin-bottom:0.85rem; }
     .panel-subtitle { font-size:0.95rem; color:#555; line-height:1.65; margin-bottom:1.75rem; }
-
-    /* Compartir */
     .share-row { display:flex; align-items:center; gap:1rem; margin-bottom:2rem; flex-wrap:wrap; }
     .share-label { font-size:0.9rem; font-weight:600; color:var(--negro); flex-shrink:0; }
     .share-icons { display:flex; align-items:center; gap:0.5rem; }
@@ -89,19 +61,14 @@
     .sicon:hover { background:#2a2a2a; transform:scale(1.1); }
     .sicon svg { width:17px; height:17px; display:block; }
     .sicon-copy { border-radius:8px; background:#5a5a5a; }
-
-    /* Botón rojo */
     .btn-descargar { display:flex; align-items:center; justify-content:center; background:var(--rojo); color:#fff; font-family:'Inter',sans-serif; font-size:1rem; font-weight:700; padding:0.9rem 2rem; border-radius:6px; text-decoration:none; border:none; cursor:pointer; transition:background .2s,transform .15s; width:100%; max-width:340px; }
     .btn-descargar:hover { background:#c8271e; transform:translateY(-1px); }
-
     .copy-toast { display:none; font-size:0.78rem; color:#22c55e; font-weight:600; margin-top:0.6rem; }
     .panel-divider { margin:2rem 0 1.25rem; border:none; border-top:1px solid #d0d0d0; }
     .panel-nav { display:flex; justify-content:space-between; align-items:center; }
     .panel-nav a { font-size:0.82rem; color:var(--rojo); text-decoration:none; font-weight:500; }
-
     footer { background:#1c1c1c; color:#888; text-align:center; padding:1.25rem; font-size:0.8rem; }
     footer a { color:var(--amarillo); text-decoration:none; }
-
     @media (max-width:960px) {
         .cert-layout { grid-template-columns:1fr; gap:2rem; }
         .cert-frame-wrap { position:static; }
@@ -112,12 +79,22 @@
 <body>
 
 <nav class="navbar">
-    <a href="../index.html" class="nav-logo"><div class="nav-logo-box">ECV</div></a>
+    <a href="../index.html" class="nav-logo">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 210 36" width="210" height="36">
+            <!-- Globo terráqueo pequeño -->
+            <circle cx="16" cy="18" r="11" fill="none" stroke="white" stroke-width="1.3"/>
+            <ellipse cx="16" cy="18" rx="11" ry="5" fill="none" stroke="white" stroke-width="1"/>
+            <line x1="16" y1="7" x2="16" y2="29" stroke="white" stroke-width="1"/>
+            <line x1="5" y1="18" x2="27" y2="18" stroke="white" stroke-width="1"/>
+            <!-- Play doble tamaño — esquina superior derecha del globo -->
+            <path d="M18,4.8 Q18,3.1 19.3,3.9 L30,10.8 Q31.2,11.5 30,12.2 L19.3,19.1 Q18,19.9 18,18.2 Z" fill="white"/>
+            <!-- Texto MASTERGIS -->
+            <text x="36" y="25" font-family="Arial Narrow, Impact, Arial, sans-serif" font-weight="900" font-size="17" fill="white" letter-spacing="1" transform="scale(1,1)">MASTERGIS</text>
+        </svg>
+    </a>
     <ul class="nav-links">
         <li><a href="../index.html">Inicio</a></li>
         <li><a href="index.html" class="active">Certificados</a></li>
-        <li><a href="../index.html#sobre-mi">Sobre mí</a></li>
-        <li><a href="../index.html#contacto">Contacto</a></li>
     </ul>
     <div class="nav-spacer"></div>
     <a href="index.html" class="nav-back">← Volver</a>
@@ -126,33 +103,24 @@
 <div class="breadcrumb">
     <a href="../index.html">Inicio</a><span>›</span>
     <a href="index.html">Certificados</a><span>›</span>
-    <span>KIARA SOLIER HUAMANI</span>
+    <!-- ★ CAMBIAR 2: nombre visible en el breadcrumb -->
+    <span id="breadcrumb-nombre">KIARA SOLIER HUAMANI</span>
 </div>
 
 <div class="cert-layout">
 
-    <!-- ═══ IZQUIERDA: imagen del certificado ═══ -->
     <div class="cert-frame-wrap">
         <div class="cert-outer-frame">
-            <!--
-            ★ CAMBIAR src por tu imagen:
-              ../img/certificados/soki500argi.jpg
-
-            Pasos:
-            1. Convierte tu PDF a PNG (smallpdf.com o captura de pantalla)
-            2. Guarda el archivo en:  img/certificados/soki500argi.png
-            3. Cambia el src de abajo con ese nombre
-            -->
+            <!-- La imagen se carga sola según el nombre del archivo HTML -->
             <img
                 class="cert-img"
-                src="../img/certificados/soki500argi.png"
-                alt="Certificado KIARA SOLIER HUAMANI"
+                id="cert-img"
+                alt="Certificado"
                 draggable="false"
             >
         </div>
     </div>
 
-    <!-- ═══ DERECHA: panel ═══ -->
     <div class="cert-panel">
         <h2 class="panel-title">¡Muchas felicidades!</h2>
         <p class="panel-subtitle">
@@ -184,10 +152,8 @@
         </div>
         <div id="copy-toast" class="copy-toast">✓ Enlace copiado</div>
 
-        <!-- PDF original para descargar — la imagen es solo para mostrar -->
-        <a href="../pdfs/soki500argi.pdf"
-           download="Certificado-KIARA-SOLIER-HUAMANI.pdf"
-           class="btn-descargar">
+        <!-- El href del PDF también se genera solo -->
+        <a id="btn-descargar" href="#" download class="btn-descargar">
             Descargar certificado
         </a>
 
@@ -200,10 +166,30 @@
 </div>
 
 <footer>
-    <p>© 2026 <a href="../index.html">GSG-UNMSM</a> — Todos los derechos reservados</p>
+    <p>© 2026 <a href="../index.html">Elsa Castañeda Vargas</a> — Todos los derechos reservados</p>
 </footer>
 
 <script>
+    // ─── AUTO-DETECCIÓN POR NOMBRE DE ARCHIVO ───────────────────────
+    // Lee el nombre de este HTML (ej: "kiso500argi.html")
+    // y construye las rutas del PDF e imagen automáticamente
+    var ruta      = window.location.pathname;                        // /certificados/kiso500argi.html
+    var archivo   = ruta.split('/').pop().replace('.html', '');      // kiso500argi
+
+    // Rutas automáticas
+    var rutaImg   = '../img/certificados/' + archivo + '.png';       // ../img/certificados/kiso500argi.png
+    var rutaPdf   = '../pdfs/' + archivo + '.pdf';                   // ../pdfs/kiso500argi.pdf
+
+    // Aplicar imagen
+    document.getElementById('cert-img').src = rutaImg;
+    document.getElementById('cert-img').alt = 'Certificado ' + archivo;
+
+    // Aplicar PDF al botón descargar
+    var btnDesc = document.getElementById('btn-descargar');
+    btnDesc.href     = rutaPdf;
+    btnDesc.download = 'Certificado-' + archivo + '.pdf';
+
+    // ─── COMPARTIR ───────────────────────────────────────────────────
     window.addEventListener('load', function () {
         var url = encodeURIComponent(window.location.href);
         var txt = encodeURIComponent('🎓 ¡Obtuve mi certificado! ');
@@ -212,11 +198,26 @@
         document.getElementById('share-li').href = 'https://www.linkedin.com/sharing/share-offsite/?url=' + url;
         document.getElementById('share-wa').href = 'https://wa.me/?text=' + txt + url;
     });
+
+    // ─── COPIAR LINK ─────────────────────────────────────────────────
     function copiarLink() {
         var link = window.location.href;
-        function show() { var t=document.getElementById('copy-toast'); t.style.display='block'; setTimeout(function(){t.style.display='none';},2800); }
-        if(navigator.clipboard){ navigator.clipboard.writeText(link).then(show).catch(function(){fb();show();}); } else{fb();show();}
-        function fb(){ var ta=document.createElement('textarea'); ta.value=link; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta); }
+        function show() {
+            var t = document.getElementById('copy-toast');
+            t.style.display = 'block';
+            setTimeout(function(){ t.style.display = 'none'; }, 2800);
+        }
+        if (navigator.clipboard) {
+            navigator.clipboard.writeText(link).then(show).catch(function(){ fb(); show(); });
+        } else { fb(); show(); }
+        function fb() {
+            var ta = document.createElement('textarea');
+            ta.value = link;
+            document.body.appendChild(ta);
+            ta.select();
+            document.execCommand('copy');
+            document.body.removeChild(ta);
+        }
     }
 </script>
 </body>
