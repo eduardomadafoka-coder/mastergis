@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificar Certificado · MasterGIS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root { --rojo: #e63329; --amarillo: #f5a200; }
+
+    body { font-family: 'Inter', sans-serif; background: #f0f0f0; min-height: 100vh; }
+
+    /* ── NAVBAR ── */
+    .navbar { background: #1c1c1c; height: 58px; display: flex; align-items: center; padding: 0 2.5rem; position: sticky; top: 0; z-index: 200; box-shadow: 0 2px 8px rgba(0,0,0,.5); }
+    .nav-logo { display: flex; align-items: center; text-decoration: none; }
+    .nav-spacer { flex: 1; }
+    .nav-inicio { color: #ccc; font-size: 0.9rem; text-decoration: none; transition: color .2s; }
+    .nav-inicio:hover { color: #fff; }
+
+    /* ── HERO ROJO ── */
+    .hero {
+        background-color: var(--rojo);
+        background-image:
+            url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='400' opacity='0.12'%3E%3Ccircle cx='200' cy='200' r='180' fill='none' stroke='white' stroke-width='1'/%3E%3Ccircle cx='200' cy='200' r='140' fill='none' stroke='white' stroke-width='1'/%3E%3Ccircle cx='200' cy='200' r='100' fill='none' stroke='white' stroke-width='1'/%3E%3Ccircle cx='600' cy='150' r='120' fill='none' stroke='white' stroke-width='1'/%3E%3Ccircle cx='600' cy='150' r='80' fill='none' stroke='white' stroke-width='1'/%3E%3Cline x1='0' y1='200' x2='800' y2='200' stroke='white' stroke-width='0.5'/%3E%3Cline x1='400' y1='0' x2='400' y2='400' stroke='white' stroke-width='0.5'/%3E%3C/svg%3E");
+        background-size: cover;
+        background-position: center;
+        padding: 4rem 2rem 7rem;
+        text-align: center;
+        position: relative;
+    }
+
+    .hero h1 {
+        font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+        font-weight: 800;
+        color: #fff;
+        margin-bottom: 1.25rem;
+    }
+
+    .hero p {
+        font-size: clamp(0.88rem, 1.3vw, 1rem);
+        color: rgba(255,255,255,0.9);
+        line-height: 1.75;
+        max-width: 680px;
+        margin: 0 auto;
+    }
+
+    /* ── TARJETA BLANCA (solapada sobre el hero) ── */
+    .search-card {
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 8px 40px rgba(0,0,0,.15);
+        max-width: 900px;
+        margin: -4rem auto 3rem;
+        padding: 2.5rem 2.5rem 2rem;
+        position: relative;
+        z-index: 10;
+    }
+
+    .search-form {
+        display: flex;
+        align-items: flex-end;
+        gap: 1.5rem;
+        flex-wrap: wrap;
+    }
+
+    /* Selector "Buscar por" */
+    .field-group { display: flex; flex-direction: column; gap: 0.4rem; }
+    .field-label { font-size: 0.88rem; font-weight: 600; color: #333; }
+    .field-label span { color: var(--rojo); margin-left: 2px; }
+
+    .field-select {
+        padding: 0.75rem 1rem;
+        border: 1.5px solid #ccc;
+        border-radius: 6px;
+        font-size: 0.9rem;
+        color: #333;
+        background: #fff;
+        min-width: 180px;
+        cursor: pointer;
+        outline: none;
+        transition: border-color .2s;
+    }
+    .field-select:focus { border-color: var(--rojo); }
+
+    /* Input principal */
+    .field-input-wrap { flex: 1; min-width: 260px; display: flex; flex-direction: column; gap: 0.4rem; }
+
+    .field-input {
+        padding: 0.75rem 1rem;
+        border: 1.5px solid #ccc;
+        border-radius: 6px;
+        font-size: 0.9rem;
+        color: #333;
+        outline: none;
+        transition: border-color .2s;
+        width: 100%;
+    }
+    .field-input:focus { border-color: var(--rojo); }
+    .field-input::placeholder { color: #bbb; }
+
+    /* Botón buscar */
+    .btn-buscar {
+        background: var(--rojo);
+        color: #fff;
+        font-family: 'Inter', sans-serif;
+        font-size: 0.95rem;
+        font-weight: 700;
+        padding: 0.75rem 2rem;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background .2s, transform .15s;
+        white-space: nowrap;
+        align-self: flex-end;
+        margin-bottom: 0;
+    }
+    .btn-buscar:hover { background: #c8271e; transform: translateY(-1px); }
+
+    /* ── RESULTADO ── */
+    .result-area { margin-top: 1.5rem; }
+
+    .result-found {
+        display: none;
+        background: #f0fdf4;
+        border: 1.5px solid #22c55e;
+        border-radius: 8px;
+        padding: 1rem 1.5rem;
+        display: none;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        flex-wrap: wrap;
+    }
+
+    .result-found p { font-size: 0.9rem; color: #166534; font-weight: 500; }
+
+    .btn-ver {
+        background: #22c55e;
+        color: #fff;
+        font-size: 0.88rem;
+        font-weight: 700;
+        padding: 0.55rem 1.4rem;
+        border-radius: 6px;
+        text-decoration: none;
+        transition: background .2s;
+        white-space: nowrap;
+    }
+    .btn-ver:hover { background: #16a34a; }
+
+    .result-notfound {
+        display: none;
+        background: #fff5f5;
+        border: 1.5px solid #fca5a5;
+        border-radius: 8px;
+        padding: 1rem 1.5rem;
+        font-size: 0.9rem;
+        color: #991b1b;
+        font-weight: 500;
+    }
+
+    /* ── LISTA DE CERTIFICADOS DISPONIBLES ── */
+    .certs-hint {
+        margin-top: 1rem;
+        font-size: 0.78rem;
+        color: #999;
+        text-align: center;
+    }
+
+    footer { background: #1c1c1c; color: #888; text-align: center; padding: 1.25rem; font-size: 0.8rem; margin-top: 3rem; }
+    footer a { color: var(--amarillo); text-decoration: none; }
+
+    @media (max-width: 640px) {
+        .search-form { flex-direction: column; }
+        .btn-buscar { width: 100%; }
+        .search-card { margin: -3rem 1rem 2rem; padding: 1.5rem; }
+    }
+    </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+    <a href="index.html" class="nav-logo">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 210 36" width="210" height="36">
+            <circle cx="16" cy="18" r="11" fill="none" stroke="white" stroke-width="1.3"/>
+            <ellipse cx="16" cy="18" rx="11" ry="5" fill="none" stroke="white" stroke-width="1"/>
+            <line x1="16" y1="7" x2="16" y2="29" stroke="white" stroke-width="1"/>
+            <line x1="5" y1="18" x2="27" y2="18" stroke="white" stroke-width="1"/>
+            <path d="M18,4.8 Q18,3.1 19.3,3.9 L30,10.8 Q31.2,11.5 30,12.2 L19.3,19.1 Q18,19.9 18,18.2 Z" fill="white"/>
+            <text x="36" y="25" font-family="Arial Narrow, Impact, Arial, sans-serif" font-weight="400" font-size="14" fill="white" letter-spacing="1">MASTERGIS</text>
+        </svg>
+    </a>
+    <div class="nav-spacer"></div>
+    <a href="index.html" class="nav-inicio">Inicio</a>
+</nav>
+
+<!-- HERO ROJO -->
+<div class="hero">
+    <h1>¡Verifica tu certificado!</h1>
+    <p>
+        Esta opción te permite confirmar los datos y la validez de tu certificado,<br>
+        para ello ingresa el nombre del certificado o el código en el recuadro inferior<br>
+        y posteriormente dale clic al botón "Buscar certificado".
+    </p>
+</div>
+
+<!-- TARJETA DE BÚSQUEDA -->
+<div class="search-card">
+    <div class="search-form">
+
+        <!-- Input -->
+        <div class="field-input-wrap">
+            <label class="field-label" id="input-label">Código del certificado <span>*</span></label>
+            <input
+                type="text"
+                class="field-input"
+                id="campo-busqueda"
+                placeholder="Ej: romo475arcgi"
+                oninput="limpiarResultado()"
+                onkeydown="if(event.key==='Enter') buscar()"
+            >
+        </div>
+
+        <!-- Botón -->
+        <button class="btn-buscar" onclick="buscar()">Buscar certificado</button>
+    </div>
+
+
+</div>
+
+<footer>
+    <p>© 2026 <a href="index.html">MasterGIS</a> — Todos los derechos reservados</p>
+</footer>
+
+<script>
+function buscar() {
+    var codigo = document.getElementById('campo-busqueda').value.trim();
+    if (!codigo) return;
+
+    var rutaPdf = 'pdfs/' + codigo + '.pdf';
+
+    // Intenta cargar el PDF — si existe muestra validación
+    fetch(rutaPdf, { method: 'HEAD' })
+        .then(function(res) {
+            if (res.ok) {
+                mostrarEncontrado(codigo, rutaPdf);
+            } else {
+                mostrarNoEncontrado();
+            }
+        })
+        .catch(function() {
+            mostrarNoEncontrado();
+        });
+}
+
+function mostrarEncontrado(codigo, rutaPdf) {
+    var box = document.getElementById('result-box');
+    box.innerHTML =
+        '<div class="result-found">' +
+            '<div>' +
+                '<p style="font-size:0.88rem;color:#166534;font-weight:700;margin-bottom:0.3rem;">✅ Certificado verificado correctamente</p>' +
+                '<p style="font-size:0.8rem;color:#555;">Código: <strong>' + codigo + '</strong></p>' +
+            '</div>' +
+            '<a href="' + rutaPdf + '" download="Certificado-' + codigo + '.pdf" class="btn-ver">⬇ Descargar certificado</a>' +
+        '</div>';
+}
+
+function mostrarNoEncontrado() {
+    var box = document.getElementById('result-box');
+    box.innerHTML =
+        '<div class="result-notfound">' +
+            '❌ No se encontró ningún certificado con ese código. Verifica e intenta de nuevo.' +
+        '</div>';
+}
+
+function limpiarResultado() {
+    document.getElementById('result-box').innerHTML = '';
+}
+</script>
+</body>
+</html>
