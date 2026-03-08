@@ -211,23 +211,14 @@
 <div class="search-card">
     <div class="search-form">
 
-        <!-- Selector -->
-        <div class="field-group">
-            <label class="field-label">Buscar por:</label>
-            <select class="field-select" id="tipo-busqueda" onchange="limpiarResultado()">
-                <option value="nombre">Nombre del alumno</option>
-                <option value="codigo">Código de certificado</option>
-            </select>
-        </div>
-
         <!-- Input -->
         <div class="field-input-wrap">
-            <label class="field-label" id="input-label">Nombre del alumno <span>*</span></label>
+            <label class="field-label" id="input-label">Código del certificado <span>*</span></label>
             <input
                 type="text"
                 class="field-input"
                 id="campo-busqueda"
-                placeholder="Ej: JUAN PEREZ GARCIA"
+                placeholder="Ej: romo475arcgi"
                 oninput="limpiarResultado()"
                 onkeydown="if(event.key==='Enter') buscar()"
             >
@@ -237,18 +228,7 @@
         <button class="btn-buscar" onclick="buscar()">Buscar certificado</button>
     </div>
 
-    <!-- Resultado -->
-    <div class="result-area">
-        <div class="result-found" id="result-found">
-            <p id="result-msg">✅ Certificado encontrado</p>
-            <a href="#" id="result-link" class="btn-ver" target="_blank">Ver certificado →</a>
-        </div>
-        <div class="result-notfound" id="result-notfound">
-            ❌ No se encontró ningún certificado con ese dato. Verifica la información e intenta de nuevo.
-        </div>
-    </div>
 
-    <p class="certs-hint">Los certificados disponibles se buscan por nombre completo o código del archivo.</p>
 </div>
 
 <footer>
@@ -256,83 +236,12 @@
 </footer>
 
 <script>
-/*
- * ════════════════════════════════════════════════════════════
- *  BASE DE DATOS DE CERTIFICADOS
- *
- *  Agrega aquí cada certificado con:
- *    codigo:  nombre del archivo HTML (sin .html)
- *    nombres: lista de nombres/textos por los que se puede buscar
- *
- *  Ejemplo:
- *  { codigo: 'kiso475arcgi', nombres: ['JUAN PEREZ GARCIA', 'juan perez'] }
- * ════════════════════════════════════════════════════════════
- */
-var certificados = [
-    {
-        codigo:  'kiso475arcgi',
-        nombres: ['JUAN PEREZ GARCIA', 'juan perez garcia', 'juan perez']
-    },
-    /*
-     * ★ AGREGAR más certificados aquí:
-     * { codigo: 'kiso500argi', nombres: ['NOMBRE COMPLETO DEL ALUMNO'] },
-     * { codigo: 'teledeteccion-envi', nombres: ['ELSA CASTAÑEDA VARGAS', 'elsa castañeda'] },
-     */
-];
-
-// Actualiza el label según el tipo de búsqueda
-document.getElementById('tipo-busqueda').addEventListener('change', function() {
-    var label = document.getElementById('input-label');
-    var input = document.getElementById('campo-busqueda');
-    if (this.value === 'codigo') {
-        label.innerHTML = 'Código <span>*</span>';
-        input.placeholder = 'Ej: kiso475arcgi';
-    } else {
-        label.innerHTML = 'Nombre del alumno <span>*</span>';
-        input.placeholder = 'Ej: JUAN PEREZ GARCIA';
-    }
-    limpiarResultado();
-});
-
 function buscar() {
-    var tipo  = document.getElementById('tipo-busqueda').value;
-    var valor = document.getElementById('campo-busqueda').value.trim().toLowerCase();
-    var found = null;
-
-    if (!valor) return;
-
-    for (var i = 0; i < certificados.length; i++) {
-        var cert = certificados[i];
-        if (tipo === 'codigo') {
-            if (cert.codigo.toLowerCase() === valor) { found = cert; break; }
-        } else {
-            for (var j = 0; j < cert.nombres.length; j++) {
-                if (cert.nombres[j].toLowerCase().includes(valor)) { found = cert; break; }
-            }
-        }
-        if (found) break;
-    }
-
-    var elFound    = document.getElementById('result-found');
-    var elNotFound = document.getElementById('result-notfound');
-    var elMsg      = document.getElementById('result-msg');
-    var elLink     = document.getElementById('result-link');
-
-    if (found) {
-        elMsg.textContent  = '✅ Certificado encontrado: ' + found.codigo;
-        elLink.href        = 'certificados/' + found.codigo + '.html';
-        elFound.style.display    = 'flex';
-        elNotFound.style.display = 'none';
-    } else {
-        elFound.style.display    = 'none';
-        elNotFound.style.display = 'block';
-    }
+    var codigo = document.getElementById('campo-busqueda').value.trim();
+    if (!codigo) return;
+    window.location.href = 'certificados/' + codigo;
 }
-
-function limpiarResultado() {
-    document.getElementById('result-found').style.display    = 'none';
-    document.getElementById('result-notfound').style.display = 'none';
-}
+function limpiarResultado() {}
 </script>
 </body>
 </html>
