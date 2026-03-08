@@ -3,533 +3,271 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mis Certificados - Elsa Castañeda Vargas</title>
-    <meta name="description" content="Certificados y cursos completados por Elsa Castañeda Vargas en Geociencias y Minería.">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <title>404 — Página no encontrada</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
     <style>
-        /* ============================
-           VARIABLES Y RESET
-        ============================ */
-        :root {
-            --rojo: #e63329;
-            --amarillo: #f5a623;
-            --dorado: #c8993a;
-            --gris-fondo: #f0f0f0;
-            --gris-claro: #e5e5e5;
-            --gris-medio: #999;
-            --negro: #1a1a1a;
-            --blanco: #ffffff;
-            --sombra: 0 4px 20px rgba(0,0,0,0.12);
-            --sombra-hover: 0 8px 32px rgba(0,0,0,0.2);
-            --radio: 10px;
-        }
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: var(--gris-fondo);
-            color: var(--negro);
-            min-height: 100vh;
-        }
-
-        /* ============================
-           HEADER / NAV
-        ============================ */
-        header {
-            background: #1c1c1c;
-            padding: 0 2rem;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.4);
-        }
-
-        .header-inner {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            height: 64px;
-        }
-
-        .logo-link {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            text-decoration: none;
-        }
-
-        .logo-badge {
-            background: linear-gradient(135deg, var(--rojo), var(--amarillo));
-            color: white;
-            font-weight: 700;
-            font-size: 0.85rem;
-            padding: 6px 12px;
-            border-radius: 6px;
-            letter-spacing: 1px;
-        }
-
-        .logo-name {
-            color: white;
-            font-size: 0.95rem;
-            font-weight: 500;
-        }
-
-        nav ul {
-            list-style: none;
-            display: flex;
-            gap: 1.5rem;
-        }
-
-        nav a {
-            color: #ccc;
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 400;
-            transition: color 0.2s;
-        }
-
-        nav a:hover, nav a.active { color: var(--amarillo); }
-
-        /* ============================
-           HERO BANNER
-        ============================ */
-        .hero-banner {
-            background: linear-gradient(135deg, #1c1c1c 0%, #2e2e2e 50%, #1c1c1c 100%);
-            padding: 3.5rem 2rem;
-            text-align: center;
-            position: relative;
+        html, body {
+            width: 100%; height: 100%;
+            font-family: 'Inter', sans-serif;
             overflow: hidden;
         }
 
-        .hero-banner::before {
+        /* ── FONDO ESPACIAL ── */
+        body {
+            background: radial-gradient(ellipse at 60% 40%, #4a3a7a 0%, #3b2d6e 30%, #2a1f55 60%, #1e1640 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        /* ── ESTRELLAS generadas con CSS ── */
+        .stars {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .star {
+            position: absolute;
+            background: #fff;
+            border-radius: 50%;
+            opacity: 0;
+            animation: twinkle var(--d, 3s) var(--delay, 0s) infinite ease-in-out;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0; transform: scale(0.8); }
+            50%       { opacity: var(--op, 0.7); transform: scale(1); }
+        }
+
+        /* ── PLANETA TIERRA — esquina superior izquierda ── */
+        .planet-earth {
+            position: fixed;
+            top: 12%;
+            left: 10%;
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            background:
+                radial-gradient(circle at 35% 35%, #6ecfff 0%, #29aadf 40%, #1a7abf 70%, #0d4f8c 100%);
+            box-shadow:
+                inset -18px -10px 30px rgba(0,0,0,0.35),
+                0 0 30px rgba(100,200,255,0.15);
+            animation: float 6s ease-in-out infinite;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        /* Continentes */
+        .planet-earth::before {
             content: '';
             position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(ellipse at 30% 50%, rgba(230,51,41,0.08) 0%, transparent 60%),
-                        radial-gradient(ellipse at 70% 50%, rgba(245,166,35,0.08) 0%, transparent 60%);
+            top: 20%; left: 25%;
+            width: 35px; height: 25px;
+            background: #4caf7a;
+            border-radius: 40% 60% 55% 45%;
+            box-shadow: 15px 5px 0 8px #4caf7a, 25px 20px 0 5px #5bbf8a;
         }
 
-        .hero-banner .container { position: relative; max-width: 800px; margin: 0 auto; }
-
-        .hero-banner h1 {
-            font-family: 'Playfair Display', serif;
-            color: white;
-            font-size: clamp(1.8rem, 4vw, 2.8rem);
-            margin-bottom: 0.75rem;
+        .planet-earth::after {
+            content: '';
+            position: absolute;
+            bottom: 25%; left: 15%;
+            width: 20px; height: 15px;
+            background: #4caf7a;
+            border-radius: 50%;
         }
 
-        .hero-banner h1 span { color: var(--amarillo); }
+        /* ── LUNA — arriba del planeta ── */
+        .moon {
+            position: fixed;
+            top: 8%;
+            left: 22%;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 40% 35%, #e8e8e8 0%, #c8c8c8 50%, #a8a8a8 100%);
+            box-shadow: inset -5px -3px 10px rgba(0,0,0,0.25), 0 0 15px rgba(255,255,255,0.1);
+            animation: float 8s ease-in-out infinite reverse;
+            z-index: 1;
+        }
 
-        .hero-banner p {
-            color: #aaa;
-            font-size: 1rem;
+        /* ── ASTRONAUTA — derecha ── */
+        .astronaut {
+            position: fixed;
+            bottom: 12%;
+            right: 8%;
+            width: 130px;
+            animation: floatRotate 7s ease-in-out infinite;
+            z-index: 1;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50%       { transform: translateY(-14px); }
+        }
+
+        @keyframes floatRotate {
+            0%, 100% { transform: translateY(0) rotate(-5deg); }
+            50%       { transform: translateY(-18px) rotate(5deg); }
+        }
+
+        /* SVG astronauta inline */
+        .astronaut svg { width: 100%; height: auto; }
+
+        /* ── CONTENIDO CENTRAL ── */
+        .content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            user-select: none;
+        }
+
+        .number-404 {
+            font-size: clamp(7rem, 18vw, 14rem);
+            font-weight: 900;
+            color: rgba(255,255,255,0.95);
+            line-height: 1;
+            letter-spacing: -4px;
+            text-shadow: 0 4px 40px rgba(0,0,0,0.3);
+        }
+
+        .subtitle {
+            font-size: clamp(0.75rem, 1.5vw, 0.95rem);
             font-weight: 300;
+            letter-spacing: 5px;
+            color: rgba(255,255,255,0.75);
+            text-transform: uppercase;
+            margin-top: 0.5rem;
+            margin-bottom: 2.5rem;
+            line-height: 1.8;
         }
 
-        .cert-count {
+        /* Botón "Regresar" — borde blanco redondeado igual al modelo */
+        .btn-back {
             display: inline-block;
-            background: rgba(245,166,35,0.15);
-            border: 1px solid rgba(245,166,35,0.4);
-            color: var(--amarillo);
-            font-size: 0.8rem;
-            font-weight: 600;
-            padding: 4px 14px;
-            border-radius: 20px;
-            margin-top: 1rem;
+            border: 1.5px solid rgba(255,255,255,0.6);
+            color: rgba(255,255,255,0.9);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.88rem;
+            font-weight: 400;
             letter-spacing: 1px;
-        }
-
-        /* ============================
-           FILTROS
-        ============================ */
-        .filters {
-            max-width: 1200px;
-            margin: 2rem auto 0;
-            padding: 0 2rem;
-            display: flex;
-            gap: 0.75rem;
-            flex-wrap: wrap;
-        }
-
-        .filter-btn {
-            background: white;
-            border: 2px solid var(--gris-claro);
-            color: #555;
-            font-family: 'Poppins', sans-serif;
-            font-size: 0.82rem;
-            font-weight: 500;
-            padding: 7px 18px;
-            border-radius: 25px;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .filter-btn:hover { border-color: var(--rojo); color: var(--rojo); }
-        .filter-btn.active { background: var(--rojo); border-color: var(--rojo); color: white; }
-
-        /* ============================
-           GRID DE CERTIFICADOS
-        ============================ */
-        .certs-section {
-            max-width: 1200px;
-            margin: 2rem auto 4rem;
-            padding: 0 2rem;
-        }
-
-        .certs-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 1.75rem;
-        }
-
-        .cert-card {
-            background: white;
-            border-radius: var(--radio);
-            overflow: hidden;
-            box-shadow: var(--sombra);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            padding: 0.6rem 2rem;
+            border-radius: 30px;
             text-decoration: none;
-            color: inherit;
-            display: block;
-            position: relative;
+            background: transparent;
+            cursor: pointer;
+            transition: background .25s, color .25s, border-color .25s;
         }
 
-        .cert-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--sombra-hover);
+        .btn-back:hover {
+            background: rgba(255,255,255,0.12);
+            border-color: rgba(255,255,255,0.9);
+            color: #fff;
         }
 
-        .cert-card:hover .cert-img-overlay { opacity: 1; }
-
-        .cert-img-wrap {
-            position: relative;
-            background: #f8f8f8;
-            padding: 1rem;
-            border-bottom: 1px solid var(--gris-claro);
-        }
-
-        .cert-img-wrap img {
-            width: 100%;
-            height: 200px;
-            object-fit: contain;
-            display: block;
-            border-radius: 6px;
-        }
-
-        /* Placeholder mientras no hay imagen real */
-        .cert-img-placeholder {
-            width: 100%;
-            height: 200px;
-            background: linear-gradient(135deg, #fff3e0, #fff8ee);
-            border-radius: 6px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 2px dashed #f5d08a;
-        }
-
-        .cert-img-placeholder .cert-mini {
-            text-align: center;
-            padding: 1rem;
-        }
-
-        .cert-mini .mini-logos {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-bottom: 0.75rem;
-        }
-
-        .mini-logo-box {
-            background: #1c1c1c;
-            color: white;
-            font-size: 0.65rem;
-            font-weight: 700;
-            padding: 4px 8px;
-            border-radius: 4px;
-        }
-
-        .mini-logo-box.org { background: #003087; }
-
-        .cert-mini .mini-title {
-            font-size: 0.7rem;
-            font-weight: 700;
-            letter-spacing: 2px;
-            color: #555;
-            text-transform: uppercase;
-            margin-bottom: 0.4rem;
-        }
-
-        .cert-mini .mini-name {
-            font-size: 0.75rem;
-            font-weight: 600;
-            color: var(--negro);
-        }
-
-        .cert-img-overlay {
-            position: absolute;
-            inset: 0;
-            background: rgba(230,51,41,0.85);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transition: opacity 0.3s;
-            border-radius: var(--radio) var(--radio) 0 0;
-        }
-
-        .cert-img-overlay span {
-            color: white;
-            font-weight: 600;
-            font-size: 0.9rem;
-            letter-spacing: 1px;
-        }
-
-        .cert-body { padding: 1.25rem 1.5rem 1.5rem; }
-
-        .cert-tag {
-            display: inline-block;
-            background: rgba(230,51,41,0.08);
-            color: var(--rojo);
-            font-size: 0.7rem;
-            font-weight: 600;
-            padding: 3px 10px;
-            border-radius: 12px;
-            letter-spacing: 0.5px;
-            margin-bottom: 0.6rem;
-            text-transform: uppercase;
-        }
-
-        .cert-body h3 {
-            font-size: 0.95rem;
-            font-weight: 600;
-            color: var(--negro);
-            line-height: 1.4;
-            margin-bottom: 0.5rem;
-        }
-
-        .cert-meta {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 1rem;
-            padding-top: 0.75rem;
-            border-top: 1px solid var(--gris-claro);
-        }
-
-        .cert-org {
-            font-size: 0.78rem;
-            color: var(--gris-medio);
-            font-weight: 500;
-        }
-
-        .cert-date {
-            font-size: 0.75rem;
-            color: var(--gris-medio);
-        }
-
-        .cert-badge {
-            position: absolute;
-            top: 12px;
-            right: 12px;
-            background: var(--amarillo);
-            color: white;
-            font-size: 0.65rem;
-            font-weight: 700;
-            padding: 3px 8px;
-            border-radius: 10px;
-            letter-spacing: 0.5px;
-        }
-
-        /* ============================
-           FOOTER
-        ============================ */
-        footer {
-            background: #1c1c1c;
-            color: #888;
-            text-align: center;
-            padding: 1.5rem;
-            font-size: 0.82rem;
-        }
-
-        footer a { color: var(--amarillo); text-decoration: none; }
-
-        /* ============================
-           RESPONSIVE
-        ============================ */
-        @media (max-width: 768px) {
-            .header-inner { flex-direction: column; gap: 0.5rem; height: auto; padding: 1rem 0; }
-            nav ul { gap: 1rem; flex-wrap: wrap; justify-content: center; }
-            .hero-banner { padding: 2rem 1rem; }
-            .certs-grid { grid-template-columns: 1fr; }
+        /* ── Puntos decorativos dispersos ── */
+        .dot {
+            position: fixed;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.35);
+            z-index: 0;
+            animation: twinkle var(--d, 4s) var(--delay, 0s) infinite;
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <div class="header-inner">
-            <a href="../index.html" class="logo-link">
-                <div class="logo-badge">ECV</div>
-                <span class="logo-name">Elsa Castañeda</span>
-            </a>
-            <nav>
-                <ul>
-                    <li><a href="../index.html">Inicio</a></li>
-                    <li><a href="../index.html#proyectos">Proyectos</a></li>
-                    <li><a href="#" class="active">Certificados</a></li>
-                    <li><a href="../index.html#contacto">Contacto</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+    <!-- Estrellas -->
+    <div class="stars" id="stars"></div>
 
-    <section class="hero-banner">
-        <div class="container">
-            <h1>Mis <span>Certificados</span></h1>
-            <p>Formación continua en Geociencias, Exploración Mineral y Teledetección</p>
-            <div class="cert-count" id="cert-count">● 3 CERTIFICADOS</div>
-        </div>
-    </section>
+    <!-- Puntos decorativos grandes -->
+    <div class="dot" style="top:45%;left:15%;--d:5s;--delay:0.5s;--op:0.5;width:6px;height:6px;"></div>
+    <div class="dot" style="top:20%;left:55%;--d:4s;--delay:1s;--op:0.4;"></div>
+    <div class="dot" style="top:70%;left:40%;--d:6s;--delay:0s;--op:0.5;"></div>
+    <div class="dot" style="top:30%;left:80%;--d:3s;--delay:2s;--op:0.4;"></div>
+    <div class="dot" style="top:80%;left:20%;--d:5s;--delay:1.5s;--op:0.3;"></div>
+    <div class="dot" style="top:60%;left:85%;--d:4s;--delay:0.8s;--op:0.4;"></div>
+    <div class="dot" style="top:15%;left:70%;--d:6s;--delay:2.5s;--op:0.3;"></div>
 
-    <div class="filters">
-        <button class="filter-btn active" data-filter="all">Todos</button>
-        <button class="filter-btn" data-filter="teledeteccion">Teledetección</button>
-        <button class="filter-btn" data-filter="mineria">Minería</button>
-        <button class="filter-btn" data-filter="geoquimica">Geoquímica</button>
+    <!-- Planeta Tierra -->
+    <div class="planet-earth"></div>
+
+    <!-- Luna -->
+    <div class="moon"></div>
+
+    <!-- Astronauta SVG -->
+    <div class="astronaut">
+        <svg viewBox="0 0 120 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Cuerpo traje -->
+            <ellipse cx="60" cy="100" rx="28" ry="35" fill="#e8e8e8"/>
+            <!-- Pecho panel -->
+            <rect x="47" y="88" width="26" height="18" rx="4" fill="#c8c8d8"/>
+            <rect x="51" y="92" width="8" height="5" rx="1" fill="#7c6fa8"/>
+            <rect x="62" y="92" width="5" height="5" rx="1" fill="#e63329"/>
+            <rect x="51" y="100" width="18" height="3" rx="1" fill="#aaa8c0"/>
+            <!-- Casco -->
+            <circle cx="60" cy="62" r="24" fill="#d0d0e0"/>
+            <!-- Visor morado -->
+            <ellipse cx="60" cy="60" rx="17" ry="15" fill="#7c5cbf"/>
+            <ellipse cx="55" cy="55" rx="5" ry="4" fill="rgba(255,255,255,0.15)"/>
+            <!-- Brazos -->
+            <ellipse cx="30" cy="98" rx="9" ry="22" rx="9" fill="#e0e0e0" transform="rotate(15 30 98)"/>
+            <ellipse cx="90" cy="98" rx="9" ry="22" fill="#e0e0e0" transform="rotate(-15 90 98)"/>
+            <!-- Manos -->
+            <circle cx="24" cy="118" r="7" fill="#d0d0d0"/>
+            <circle cx="96" cy="118" r="7" fill="#d0d0d0"/>
+            <!-- Piernas -->
+            <ellipse cx="47" cy="136" rx="10" ry="16" fill="#d8d8d8" transform="rotate(5 47 136)"/>
+            <ellipse cx="73" cy="136" rx="10" ry="16" fill="#d8d8d8" transform="rotate(-5 73 136)"/>
+            <!-- Botas -->
+            <ellipse cx="44" cy="150" rx="12" ry="7" fill="#bbbbc8"/>
+            <ellipse cx="76" cy="150" rx="12" ry="7" fill="#bbbbc8"/>
+            <!-- Mochila propulsor -->
+            <rect x="42" y="78" width="36" height="22" rx="6" fill="#c8c8d8"/>
+            <!-- Línea de seguridad -->
+            <path d="M 24 112 Q 10 90 20 70 Q 30 50 60 45" stroke="rgba(255,255,255,0.4)" stroke-width="1.5" stroke-dasharray="4 3" fill="none"/>
+        </svg>
     </div>
 
-    <section class="certs-section">
-        <div class="certs-grid" id="certs-grid">
+    <!-- Contenido central -->
+    <div class="content">
+        <div class="number-404">404</div>
+        <p class="subtitle">
+            LOOKS LIKE YOU ARE<br>LOST IN SPACE
+        </p>
+        <!--
+            El botón lleva al index.html
+            Si este archivo está en la raíz: href="index.html"
+            Si está en certificados/:        href="../index.html"
+        -->
+        <a href="../index.html" class="btn-back">Regresar</a>
+    </div>
 
-            <!-- ==================== CERTIFICADO 1 ==================== -->
-            <a href="teledeteccion-envi.html" class="cert-card" data-category="teledeteccion">
-                <div class="cert-img-wrap">
-                    <div class="cert-img-placeholder">
-                        <div class="cert-mini">
-                            <div class="mini-logos">
-                                <span class="mini-logo-box">GSG</span>
-                                <span class="mini-logo-box org">MINEXFIELD</span>
-                            </div>
-                            <div class="mini-title">Certificado de Participación</div>
-                            <div class="mini-name">ELSA CASTAÑEDA VARGAS</div>
-                        </div>
-                    </div>
-                    <!-- Cuando tengas la imagen real, reemplaza el div anterior por:
-                    <img src="../img/certificados/teledeteccion-envi.jpg" alt="Certificado Teledetección ENVI"> -->
-                    <div class="cert-img-overlay"><span>→ Ver certificado</span></div>
-                    <span class="cert-badge">2026</span>
-                </div>
-                <div class="cert-body">
-                    <span class="cert-tag">Teledetección</span>
-                    <h3>Teledetección Aplicada a la Exploración Mineral con ENVI</h3>
-                    <div class="cert-meta">
-                        <span class="cert-org">GSG – UNMSM &amp; MINEXFIELD</span>
-                        <span class="cert-date">Feb 2026 · 8 hrs</span>
-                    </div>
-                </div>
-            </a>
-
-            <!-- ==================== CERTIFICADO 2 (ejemplo) ==================== -->
-            <a href="geoquimica-exploratoria.html" class="cert-card" data-category="geoquimica">
-                <div class="cert-img-wrap">
-                    <div class="cert-img-placeholder">
-                        <div class="cert-mini">
-                            <div class="mini-logos">
-                                <span class="mini-logo-box">GSG</span>
-                            </div>
-                            <div class="mini-title">Certificado de Participación</div>
-                            <div class="mini-name">ELSA CASTAÑEDA VARGAS</div>
-                        </div>
-                    </div>
-                    <div class="cert-img-overlay"><span>→ Ver certificado</span></div>
-                    <span class="cert-badge">2025</span>
-                </div>
-                <div class="cert-body">
-                    <span class="cert-tag">Geoquímica</span>
-                    <h3>Geoquímica Exploratoria Aplicada</h3>
-                    <div class="cert-meta">
-                        <span class="cert-org">GSG – UNMSM</span>
-                        <span class="cert-date">Nov 2025 · 12 hrs</span>
-                    </div>
-                </div>
-            </a>
-
-            <!-- ==================== CERTIFICADO 3 (ejemplo) ==================== -->
-            <a href="sig-minero.html" class="cert-card" data-category="mineria">
-                <div class="cert-img-wrap">
-                    <div class="cert-img-placeholder">
-                        <div class="cert-mini">
-                            <div class="mini-logos">
-                                <span class="mini-logo-box">GSG</span>
-                            </div>
-                            <div class="mini-title">Certificado de Participación</div>
-                            <div class="mini-name">ELSA CASTAÑEDA VARGAS</div>
-                        </div>
-                    </div>
-                    <div class="cert-img-overlay"><span>→ Ver certificado</span></div>
-                    <span class="cert-badge">2025</span>
-                </div>
-                <div class="cert-body">
-                    <span class="cert-tag">Minería</span>
-                    <h3>SIG Aplicado a la Minería con ArcGIS Pro</h3>
-                    <div class="cert-meta">
-                        <span class="cert-org">GSG – UNMSM</span>
-                        <span class="cert-date">Sep 2025 · 16 hrs</span>
-                    </div>
-                </div>
-            </a>
-
-            <!-- 
-                ============================================================
-                INSTRUCCIONES PARA AGREGAR MÁS CERTIFICADOS:
-                
-                1. Copia el bloque de un <a class="cert-card"> completo
-                2. Crea un nuevo archivo HTML con el nombre del curso
-                   (ej: nuevo-curso.html) usando la PLANTILLA que está
-                   en el archivo: certificados/plantilla.html
-                3. Actualiza: href, data-category, nombre del cert,
-                   organización, fecha y horas
-                ============================================================
-            -->
-
-        </div>
-    </section>
-
-    <footer>
-        <p>© 2026 <a href="../index.html">Elsa Castañeda Vargas</a> · Todos los derechos reservados</p>
-    </footer>
-
-    <script>
-        // Filtro por categoría
-        const filterBtns = document.querySelectorAll('.filter-btn');
-        const cards = document.querySelectorAll('.cert-card');
-
-        filterBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                filterBtns.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-
-                const filter = btn.dataset.filter;
-                let visible = 0;
-
-                cards.forEach(card => {
-                    const show = filter === 'all' || card.dataset.category === filter;
-                    card.style.display = show ? 'block' : 'none';
-                    if (show) visible++;
-                });
-
-                document.getElementById('cert-count').textContent = `● ${visible} CERTIFICADO${visible !== 1 ? 'S' : ''}`;
-            });
-        });
-    </script>
+<script>
+    // Genera estrellas aleatorias
+    var starsEl = document.getElementById('stars');
+    var html = '';
+    for (var i = 0; i < 120; i++) {
+        var size   = Math.random() * 2.5 + 0.5;
+        var top    = Math.random() * 100;
+        var left   = Math.random() * 100;
+        var delay  = (Math.random() * 5).toFixed(2);
+        var dur    = (Math.random() * 4 + 2).toFixed(2);
+        var op     = (Math.random() * 0.6 + 0.3).toFixed(2);
+        html += '<div class="star" style="'
+            + 'width:' + size + 'px;height:' + size + 'px;'
+            + 'top:' + top + '%;left:' + left + '%;'
+            + '--delay:' + delay + 's;--d:' + dur + 's;--op:' + op + ';'
+            + '"></div>';
+    }
+    starsEl.innerHTML = html;
+</script>
 </body>
 </html>
