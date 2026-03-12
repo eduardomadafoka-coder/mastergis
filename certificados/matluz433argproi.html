@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+
+    <link rel="icon" type="image/svg+xml" href="../img/logo.svg">
+    <!-- ★ CAMBIAR 1: título de la pestaña -->
+    <title>Certificado · LUZ MERY MATIAS BASUALDO </title>
+    <meta name="description" content="Certificado oficial emitido por MasterGIS.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+        --rojo:      #e63329;
+        --amarillo:  #f5a200;
+        --negro:     #1a1a1a;
+        --oscuro:    #1e2530;
+        --gris-bg:   #e8e8e8;
+        --gris-icon: #4a4a4a;
+    }
+    body { font-family:'Inter',sans-serif; background:var(--gris-bg); color:var(--negro); min-height:100vh; }
+    .navbar { background:#1c1c1c; height:58px; display:flex; align-items:center; padding:0 2rem; gap:2rem; position:sticky; top:0; z-index:200; box-shadow:0 2px 8px rgba(0,0,0,.5); }
+    .nav-logo { display:flex; align-items:center; gap:8px; text-decoration:none; }
+    .nav-logo-box { background:linear-gradient(135deg,var(--rojo) 40%,var(--amarillo)); color:white; font-weight:800; font-size:0.85rem; padding:5px 11px; border-radius:5px; letter-spacing:1px; }
+    .nav-links { display:flex; gap:1.75rem; list-style:none; }
+    .nav-links a { color:#ccc; text-decoration:none; font-size:0.88rem; transition:color .2s; }
+    .nav-links a:hover, .nav-links a.active { color:#fff; }
+    .nav-spacer { flex:1; }
+    .nav-back { color:#aaa; font-size:0.82rem; text-decoration:none; transition:color .2s; }
+    .nav-back:hover { color:var(--amarillo); }
+    .breadcrumb { max-width:1100px; margin:1.4rem auto 0; padding:0 2rem; font-size:0.78rem; color:#999; display:flex; align-items:center; gap:6px; }
+    .breadcrumb a { color:var(--rojo); text-decoration:none; }
+    .cert-layout { max-width:1100px; margin:2.5rem auto 5rem; padding:0 2rem; display:grid; grid-template-columns:480px 1fr; gap:4rem; align-items:start; }
+    .cert-frame-wrap { position:sticky; top:76px; }
+    .cert-outer-frame { background:var(--oscuro); border-radius:6px; padding:10px; box-shadow:0 6px 28px rgba(0,0,0,.5); display:inline-block; width:100%; }
+    .cert-img { width:100%; display:block; border-radius:2px; user-select:none; pointer-events:none; -webkit-user-drag:none; }
+    .cert-panel { padding-top:0.5rem; }
+    .panel-title { font-size:1.95rem; font-weight:800; color:var(--negro); line-height:1.2; margin-bottom:0.85rem; }
+    .panel-subtitle { font-size:0.95rem; color:#555; line-height:1.65; margin-bottom:1.75rem; }
+    .share-row { display:flex; align-items:center; gap:1rem; margin-bottom:2rem; flex-wrap:wrap; }
+    .share-label { font-size:0.9rem; font-weight:600; color:var(--negro); flex-shrink:0; }
+    .share-icons { display:flex; align-items:center; gap:0.5rem; }
+    .sicon { width:38px; height:38px; border-radius:50%; background:var(--gris-icon); display:flex; align-items:center; justify-content:center; text-decoration:none; border:none; cursor:pointer; transition:background .18s,transform .18s; flex-shrink:0; padding:0; }
+    .sicon:hover { background:#2a2a2a; transform:scale(1.1); }
+    .sicon svg { width:17px; height:17px; display:block; }
+    .sicon-copy { border-radius:8px; background:#5a5a5a; }
+    .btn-descargar { display:flex; align-items:center; justify-content:center; background:var(--rojo); color:#fff; font-family:'Inter',sans-serif; font-size:1rem; font-weight:700; padding:0.9rem 2rem; border-radius:6px; text-decoration:none; border:none; cursor:pointer; transition:background .2s,transform .15s; width:100%; max-width:340px; }
+    .btn-descargar:hover { background:#c8271e; transform:translateY(-1px); }
+    .copy-toast { display:none; font-size:0.78rem; color:#22c55e; font-weight:600; margin-top:0.6rem; }
+    .panel-divider { margin:2rem 0 1.25rem; border:none; border-top:1px solid #d0d0d0; }
+    .panel-nav { display:flex; justify-content:space-between; align-items:center; }
+    .panel-nav a { font-size:0.82rem; color:var(--rojo); text-decoration:none; font-weight:500; }
+    footer { background:#1c1c1c; color:#888; text-align:center; padding:1.25rem; font-size:0.8rem; }
+    footer a { color:var(--amarillo); text-decoration:none; }
+    @media (max-width:960px) {
+        .cert-layout { grid-template-columns:1fr; gap:2rem; }
+        .cert-frame-wrap { position:static; }
+        .btn-descargar { max-width:100%; }
+    }
+
+    /* ── FOOTER ── */
+    footer { background:#ececec; border-top:1px solid #d8d8d8; }
+    .footer-top { max-width:1100px; margin:0 auto; padding:2.5rem 2rem; display:flex; justify-content:space-between; align-items:flex-start; gap:3rem; flex-wrap:wrap; }
+    .footer-newsletter {}
+    .footer-nl-text { font-size:0.92rem; color:#333; text-align:center; line-height:1.6; margin-bottom:1rem; }
+    .footer-nl-form { display:flex; gap:0; margin-bottom:1.1rem; }
+    .footer-input { flex:1; padding:0.65rem 1rem; border:1.5px solid #ccc; border-right:none; border-radius:6px 0 0 6px; font-size:0.85rem; color:#333; background:#fff; outline:none; min-width:240px; }
+    .footer-input:focus { border-color:#aaa; }
+    .footer-nl-btn { background:#e63329; border:none; padding:0 1rem; border-radius:0 6px 6px 0; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:background .2s; }
+    .footer-nl-btn:hover { background:#c8271e; }
+    .footer-social { display:flex; justify-content:center; gap:1rem; }
+    .fsicon { color:#555; text-decoration:none; transition:color .2s; display:flex; align-items:center; }
+    .fsicon:hover { color:#111; }
+    .footer-payments { text-align:center; }
+    .footer-pay-text { font-size:0.92rem; color:#333; margin-bottom:1rem; }
+    .footer-pay-logos { display:flex; align-items:center; gap:1.25rem; flex-wrap:wrap; justify-content:center; }
+    .footer-bottom { border-top:1px solid #d0d0d0; padding:1rem 2rem; display:flex; justify-content:center; gap:2rem; flex-wrap:wrap; }
+    .footer-bottom a { color:#555; font-size:0.78rem; text-decoration:none; transition:color .2s; }
+    .footer-bottom a:hover { color:#111; }
+    @media(max-width:700px){ .footer-top{flex-direction:column;align-items:center;} .footer-bottom{gap:1rem;} }
+    </style>
+</head>
+<body>
+
+<nav class="navbar" style="padding:0 2.5rem;">
+    <!-- Logo MASTERGIS — izquierda -->
+    <a href="../index.html" style="display:flex;align-items:center;text-decoration:none;margin-right:-2.4rem;flex-shrink:0;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 215 36" width="215" height="36">
+            <circle cx="16" cy="18" r="11" fill="none" stroke="white" stroke-width="1.3"/>
+            <ellipse cx="16" cy="18" rx="11" ry="5" fill="none" stroke="white" stroke-width="1"/>
+            <line x1="16" y1="7" x2="16" y2="29" stroke="white" stroke-width="1"/>
+            <line x1="5" y1="18" x2="27" y2="18" stroke="white" stroke-width="1"/>
+            <path d="M18,4.8 Q18,3.1 19.3,3.9 L30,10.8 Q31.2,11.5 30,12.2 L19.3,19.1 Q18,19.9 18,18.2 Z" fill="white"/>
+            <text x="36" y="26" font-family="Arial Narrow, Impact, Arial, sans-serif" font-weight="400" font-size="17" fill="white" letter-spacing="1">MASTERGIS</text>
+        </svg>
+    </a>
+    <ul style="display:flex;align-items:center;gap:0;list-style:none;margin-left:0;">
+        <!-- ★ PON TU LINK: href="LINK_CURSOS" -->
+        <li><a href="https://mastergis.com/cursos" style="color:#ccc;text-decoration:none;font-size:0.9rem;padding:6px 16px;transition:color .2s;">Cursos</a></li>
+        <li>
+            <a href="../verificar.html" style="display:inline-flex;align-items:center;gap:6px;border:1.5px solid #f5a200;color:#f5a200;font-size:0.78rem;font-weight:700;padding:5px 13px;border-radius:5px;text-decoration:none;letter-spacing:0.5px;">
+                <span style="width:0;height:0;border-style:solid;border-width:5px 0 5px 9px;border-color:transparent transparent transparent #f5a200;display:inline-block;"></span>
+                CERTIFICADOS
+            </a>
+        </li>
+        <!-- ★ PON TU LINK: href="LINK_CLASES_EN_VIVO" -->
+        <li><a href="https://mastergis.com/clases" style="color:#ccc;text-decoration:none;font-size:0.9rem;padding:6px 16px;transition:color .2s;">Clases en vivo</a></li>
+        <!-- ★ PON TU LINK: href="LINK_EMPRESAS" -->
+        <li><a href="https://mastergis.com/empresas" style="color:#ccc;text-decoration:none;font-size:0.9rem;padding:6px 16px;transition:color .2s;">Empresas</a></li>
+        <!-- ★ PON TU LINK: href="LINK_PROMOCIONES" -->
+        <li><a href="#" style="color:#ccc;text-decoration:none;font-size:0.9rem;padding:6px 16px;transition:color .2s;">Promociones</a></li>
+    </ul>
+    <div style="flex:1;"></div>
+    <!-- ★ PON TU LINK: href="LINK_ENTRAR" -->
+    <a href="https://mastergis.com/login" style="color:#ccc;text-decoration:none;font-size:0.9rem;margin-right:1.25rem;transition:color .2s;">Entrar</a>
+    <!-- ★ PON TU LINK: href="LINK_REGISTRARSE" -->
+    <a href="https://mastergis.com/register" style="background:#e63329;color:#fff;font-weight:700;padding:8px 20px;border-radius:5px;text-decoration:none;font-size:0.9rem;">Registrarse</a>
+</nav>
+
+<div class="breadcrumb">
+    <a href="../index.html">Inicio</a><span>›</span>
+    <span id="breadcrumb-nombre">LUZ MERY MATIAS BASUALDO </span>
+</div>
+
+<div class="cert-layout">
+
+    <div class="cert-frame-wrap">
+        <div class="cert-outer-frame">
+            <!-- La imagen se carga sola según el nombre del archivo HTML -->
+            <img
+                class="cert-img"
+                id="cert-img"
+                alt="Certificado"
+                draggable="false"
+            >
+        </div>
+    </div>
+
+    <div class="cert-panel">
+        <h2 class="panel-title">¡Muchas felicidades!</h2>
+        <p class="panel-subtitle">
+            Comparte tus logros con tu familia, amigos, empleadores y la comunidad.
+        </p>
+
+        <div class="share-row">
+            <span class="share-label">Compártelo</span>
+            <div class="share-icons">
+                <a href="https://www.facebook.com/MasterGIScom" id="share-fb" target="_blank" rel="noopener" class="sicon" title="Facebook">
+                    <svg viewBox="0 0 24 24" fill="white"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                </a>
+                <a href="https://x.com/MasterGIScom" id="share-tw" target="_blank" rel="noopener" class="sicon" title="Twitter">
+                    <svg viewBox="0 0 24 24" fill="white"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                </a>
+                <a href="https://www.linkedin.com/school/mastergiscom/" id="share-li" target="_blank" rel="noopener" class="sicon" title="LinkedIn">
+                    <svg viewBox="0 0 24 24" fill="white"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                </a>
+
+                <button class="sicon sicon-copy" onclick="copiarLink()" title="Copiar enlace">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                        <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <div id="copy-toast" class="copy-toast">✓ Enlace copiado</div>
+
+        <!-- El href del PDF también se genera solo -->
+        <a id="btn-descargar" href="#" download class="btn-descargar">
+            Descargar certificado
+        </a>
+
+        <div style="margin-top:1.5rem;">
+            <a href="../index.html" style="color:var(--rojo);font-size:0.85rem;font-weight:600;text-decoration:none;">← Regresar al menú principal</a>
+        </div>
+
+        
+    </div>
+</div>
+
+<footer>
+    <!-- Franja superior -->
+    <div class="footer-top">
+        <!-- Izquierda: suscripción + redes -->
+        <div class="footer-newsletter">
+            <p class="footer-nl-text">Sé el primero en enterarte de<br>nuestros cursos y promociones</p>
+            <div class="footer-nl-form">
+                <input type="email" id="nl-input" placeholder="Ingresa tu correo electrónico" class="footer-input">
+                <button class="footer-nl-btn" onclick="validarCorreo()">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </button>
+            </div>
+            <div id="nl-msg" style="font-size:0.8rem;margin-top:0.5rem;min-height:1.2rem;text-align:center;font-weight:600;"></div>
+            <div class="footer-social">
+                <!-- Facebook -->
+                <!-- ★ PON TU LINK FACEBOOK -->
+                <a href="https://www.facebook.com/MasterGIScom" class="fsicon" title="Facebook"><svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+                <!-- Instagram -->
+                <!-- ★ PON TU LINK INSTAGRAM -->
+                <a href="https://www.instagram.com/mastergiscom/" class="fsicon" title="Instagram"><svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+                <!-- GitHub -->
+                <!-- ★ PON TU LINK GITHUB -->
+                <a href="https://github.com/MasterGiscom" class="fsicon" title="GitHub"><svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></a>
+                <!-- LinkedIn -->
+                <!-- ★ PON TU LINK LINKEDIN -->
+                <a href="https://www.linkedin.com/school/mastergiscom/" class="fsicon" title="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+                <!-- YouTube -->
+                <!-- ★ PON TU LINK YOUTUBE -->
+                <a href="https://www.youtube.com/c/mastersig" class="fsicon" title="YouTube"><svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg></a>
+                <!-- TikTok -->
+                <!-- ★ PON TU LINK TIKTOK -->
+                <a href="https://www.tiktok.com/@mastergis.com" class="fsicon" title="TikTok"><svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg></a>
+            </div>
+        </div>
+
+        <!-- Derecha: métodos de pago -->
+        <div class="footer-payments">
+            <p class="footer-pay-text">Paga tu curso como quieras</p>
+            <div class="footer-pay-logos">
+                <!-- VISA -->
+                <svg viewBox="0 0 60 20" width="52" height="20" fill="none"><text x="0" y="17" font-family="Arial, sans-serif" font-size="18" font-weight="900" font-style="italic" fill="#1a1f71">VISA</text></svg>
+                <!-- Mastercard -->
+                <svg viewBox="0 0 38 24" width="38" height="24"><circle cx="14" cy="12" r="12" fill="#EB001B"/><circle cx="24" cy="12" r="12" fill="#F79E1B"/><path d="M19 5.5a12 12 0 010 13A12 12 0 0119 5.5z" fill="#FF5F00"/></svg>
+                <!-- PayPal -->
+                <svg viewBox="0 0 80 22" width="72" height="22" fill="none"><text x="0" y="17" font-family="Arial, sans-serif" font-size="13" font-weight="700" fill="#003087">Pay</text><text x="24" y="17" font-family="Arial, sans-serif" font-size="13" font-weight="700" fill="#009cde">Pal</text></svg>
+                <!-- Amex -->
+                <svg viewBox="0 0 46 30" width="46" height="30"><rect width="46" height="30" rx="4" fill="#2E77BC"/><text x="5" y="20" font-family="Arial, sans-serif" font-size="8" font-weight="800" fill="white" letter-spacing="0.5">AMERICAN</text><text x="5" y="27" font-family="Arial, sans-serif" font-size="6" font-weight="700" fill="white" letter-spacing="1">EXPRESS</text></svg>
+            </div>
+        </div>
+    </div>
+
+    <!-- Franja inferior: links legales -->
+    <div class="footer-bottom">
+        <a href="https://mastergis.com/sobre-mastergis">Sobre MasterGIS</a>
+        <a href="https://mastergis.com/blog">Blog</a>
+        <a href="https://mastergis.pages.dev/verificar">Verificar Certificado</a>
+        <a href="https://mastergis.com/politica-de-privacidad">Políticas de privacidad</a>
+        <a href="https://mastergis.com/terminos-y-condiciones">Términos y Condiciones</a>
+        <a href="https://mastergis.com/propiedad-intelectual">Propiedad Intelectual</a>
+        <a href="https://librodereclamacionesperu.com/97820972.html">Libro de Reclamaciones</a>
+    </div>
+</footer>
+
+<script>
+    // ─── AUTO-DETECCIÓN POR NOMBRE DE ARCHIVO ───────────────────────
+    // Lee el nombre de este HTML (ej: "kiso500argi.html")
+    // y construye las rutas del PDF e imagen automáticamente
+    var ruta      = window.location.pathname;                        // /certificados/kiso500argi.html
+    var archivo   = ruta.split('/').pop().replace('.html', '');      // kiso500argi
+
+    // Rutas automáticas
+    var rutaImg   = '../img/certificados/' + archivo + '.png';       // ../img/certificados/kiso500argi.png
+    var rutaPdf   = '../pdfs/' + archivo + '.pdf';                   // ../pdfs/kiso500argi.pdf
+
+    // Aplicar imagen
+    document.getElementById('cert-img').src = rutaImg;
+    document.getElementById('cert-img').alt = 'Certificado ' + archivo;
+
+    // Aplicar PDF al botón descargar
+    var btnDesc = document.getElementById('btn-descargar');
+    btnDesc.href     = rutaPdf;
+    btnDesc.download = 'Certificado-' + archivo + '.pdf';
+
+    // ─── COMPARTIR ───────────────────────────────────────────────────
+    
+
+    // ─── COPIAR LINK ─────────────────────────────────────────────────
+    function copiarLink() {
+        var link = window.location.href;
+        function show() {
+            var t = document.getElementById('copy-toast');
+            t.style.display = 'block';
+            setTimeout(function(){ t.style.display = 'none'; }, 2800);
+        }
+        if (navigator.clipboard) {
+            navigator.clipboard.writeText(link).then(show).catch(function(){ fb(); show(); });
+        } else { fb(); show(); }
+        function fb() {
+            var ta = document.createElement('textarea');
+            ta.value = link;
+            document.body.appendChild(ta);
+            ta.select();
+            document.execCommand('copy');
+            document.body.removeChild(ta);
+        }
+    }
+
+    function validarCorreo() {
+        var input = document.getElementById('nl-input');
+        var msg   = document.getElementById('nl-msg');
+        var val   = input.value.trim().toLowerCase();
+        if (val.endsWith('@gmail.com') && val.length > 10) {
+            msg.style.color = '#22c55e';
+            msg.textContent = '✅ ¡Correo recibido! Pronto tendrás noticias.';
+            input.style.borderColor = '#22c55e';
+        } else {
+            msg.style.color = '#e63329';
+            msg.textContent = '❌ Solo se aceptan correos @gmail.com';
+            input.style.borderColor = '#e63329';
+        }
+    }
+</script>
+</body>
+</html>
